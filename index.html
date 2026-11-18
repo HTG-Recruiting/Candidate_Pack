@@ -4,30 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#140B30" />
+  <meta name="theme-color" content="#2B0C75" />
   <title>Candidate pack · HomeToGo Group</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" />
   <style>
     :root {
       color-scheme: dark;
+      /* Official HomeToGo Brand Guidelines */
       --purple: #4D21B7;
-      --violet: #7C3AED;
-      --indigo: #1E1B4B;
-      --indigo-2: #2B2468;
-      --lavender: #EDE9FE;
-      --lavender-2: #F5F2FE;
-      --paper: #FBF9FE;
-      --ink: #1E1B4B;
-      --muted: #555170;
-      --muted-dark: #CFC9F2;
-      --coral: #FF795B;
-      --coral-soft: #FFB09E;
-      --gradient: linear-gradient(120deg, #4D21B7 0%, #7A37A4 55%, #FF795B 100%);
-      --stage: #120F33;
-      --head: "Plus Jakarta Sans", "Figtree", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-      --body: "Figtree", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --violet: #805AE9;
+      --indigo: #2B0C75;
+      --indigo-2: #3A168E;
+      --lavender: #EDEDFF;
+      --lavender-2: #F6F5FF;
+      --paper: #FFFFFF;
+      --ink: #262626;
+      --muted: #434343;
+      --muted-dark: #DFDCFF;
+      --coral: #FF7E64;
+      --coral-soft: #FFB2A2;
+      --pro-mint: #84FCA3;
+      --accent-blue: #3290FF;
+      --gradient: linear-gradient(120deg, #4D21B7 0%, #805AE9 55%, #FF7E64 100%);
+      --stage: #1A074A;
+      --head: "Poppins", system-ui, -apple-system, sans-serif;
+      --body: "Poppins", system-ui, -apple-system, sans-serif;
       --flip-ms: 900ms;
     }
 
@@ -42,7 +45,7 @@
       overflow: hidden;
       font-family: var(--body);
       color: var(--paper);
-      background: radial-gradient(110% 70% at 50% 0%, #3B1F8F 0%, var(--stage) 65%);
+      background: radial-gradient(110% 70% at 50% 0%, #4D21B7 0%, var(--stage) 68%);
       -webkit-font-smoothing: antialiased;
     }
     body.is-picker { height: auto; min-height: 100svh; overflow: auto; display: block; }
@@ -65,15 +68,15 @@
       font-size: 13px;
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    .muted { opacity: .75; font-weight: 500; }
+    .muted { opacity: .8; font-weight: 500; }
     .topbar-right { display: flex; align-items: center; gap: 12px; }
-    .counter { font-variant-numeric: tabular-nums; opacity: .8; }
+    .counter { font-variant-numeric: tabular-nums; opacity: .85; }
     .switch {
-      font-size: 12px; color: var(--paper); cursor: pointer;
-      background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .22);
-      border-radius: 999px; padding: 5px 11px;
+      font-size: 12px; color: var(--paper); cursor: pointer; font-weight: 500;
+      background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 999px; padding: 5px 12px;
     }
-    .switch:hover { background: rgba(255, 255, 255, .18); }
+    .switch:hover { background: rgba(255, 255, 255, .2); }
 
     .controls {
       display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -81,10 +84,10 @@
     }
     .nav {
       width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
-      background: rgba(255, 255, 255, .1); color: var(--paper);
-      border: 1px solid rgba(255, 255, 255, .22); cursor: pointer; transition: background .2s;
+      background: rgba(255, 255, 255, .12); color: var(--paper);
+      border: 1px solid rgba(255, 255, 255, .24); cursor: pointer; transition: background .2s;
     }
-    .nav:hover:not(:disabled) { background: rgba(255, 255, 255, .2); }
+    .nav:hover:not(:disabled) { background: rgba(255, 255, 255, .22); }
     .nav:disabled { opacity: .3; cursor: default; }
     .nav .icon { width: 22px; height: 22px; }
     .dots { display: flex; flex-wrap: wrap; justify-content: center; }
@@ -107,12 +110,12 @@
     .book::before, .book::after { content: ""; position: absolute; pointer-events: none; }
     .book::before {
       inset: -8px -11px -8px -6px; z-index: -2; border-radius: 6px 14px 14px 6px;
-      background: linear-gradient(90deg, #160F45 0, #3A1C99 10px, #34198A 100%);
-      box-shadow: 0 34px 60px -20px rgba(0, 0, 0, .7);
+      background: linear-gradient(90deg, #1E0757 0, #4D21B7 10px, #3A168E 100%);
+      box-shadow: 0 34px 60px -20px rgba(0, 0, 0, .72);
     }
     .book::after {
       top: 3px; bottom: 3px; right: -6px; width: 8px; z-index: -1; border-radius: 0 5px 5px 0;
-      background: repeating-linear-gradient(to right, #F7F4FE 0 1px, #CDC4EA 1px 2px);
+      background: repeating-linear-gradient(to right, #FFFFFF 0 1px, #EDEDFF 1px 2px);
     }
 
     .pages { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 0% 50%; }
@@ -130,20 +133,20 @@
       position: absolute; inset: 0; overflow: hidden;
       backface-visibility: hidden; -webkit-backface-visibility: hidden;
       border-radius: 2px 10px 10px 2px;
-      box-shadow: 0 1px 2px rgba(20, 11, 48, .18);
+      box-shadow: 0 1px 2px rgba(43, 12, 117, .18);
     }
     .front { background: var(--paper); }
     .front::before {
       content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 7%; z-index: 5; pointer-events: none;
-      background: linear-gradient(to right, rgba(20, 11, 48, .26), rgba(20, 11, 48, .07) 45%, rgba(20, 11, 48, 0));
+      background: linear-gradient(to right, rgba(43, 12, 117, .24), rgba(43, 12, 117, .06) 45%, rgba(43, 12, 117, 0));
     }
     .front::after {
       content: ""; position: absolute; inset: 0; z-index: 6; pointer-events: none;
-      background: linear-gradient(to right, rgba(20, 11, 48, 0) 30%, rgba(20, 11, 48, .45));
+      background: linear-gradient(to right, rgba(43, 12, 117, 0) 30%, rgba(43, 12, 117, .45));
       opacity: 0; transition: opacity var(--flip-ms);
     }
     .page.flipped .front::after { opacity: 1; }
-    .back { transform: rotateY(180deg); background: linear-gradient(to left, #F1EDFC, #D8CFF0); }
+    .back { transform: rotateY(180deg); background: linear-gradient(to left, #F6F5FF, #EDEDFF); }
 
     .canvas {
       position: absolute; left: 0; top: 0; width: 360px; height: 640px;
@@ -155,31 +158,32 @@
     .pg {
       position: absolute; inset: 0; overflow: hidden;
       padding: 24px 22px 38px 24px;
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex; flex-direction: column; gap: 11px;
       font-family: var(--body); color: var(--ink);
     }
     .tone-light { background: var(--paper); }
-    .tone-lav { background: var(--lavender-2); }
+    .tone-lav { background: var(--lavender); }
     .tone-dark { background: var(--indigo); color: #fff; }
 
-    .pg p { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+    .pg p { margin: 0; font-size: 12px; line-height: 1.45; color: var(--muted); }
     .tone-dark p { color: var(--muted-dark); }
     .pg h1, .pg h2, .pg h3 { margin: 0; font-family: var(--head); color: var(--ink); text-wrap: balance; }
-    .pg h1 { font-size: 31px; line-height: 1.08; font-weight: 800; letter-spacing: -.02em; color: #fff; }
-    .pg h2 { font-size: 22px; line-height: 1.15; font-weight: 800; letter-spacing: -.015em; }
-    .pg h3 { font-size: 13.5px; line-height: 1.25; font-weight: 700; }
+    .pg h1 { font-size: 30px; line-height: 1.1; font-weight: 700; letter-spacing: -.02em; color: #fff; }
+    .pg h2 { font-size: 21px; line-height: 1.18; font-weight: 700; letter-spacing: -.015em; }
+    .pg h3 { font-size: 13px; line-height: 1.25; font-weight: 600; }
     .tone-dark h2, .tone-dark h3, .card.dark h3 { color: #fff; }
 
     .eyebrow {
-      margin: 0 0 6px !important; font-family: var(--head); font-size: 9.5px !important; font-weight: 800;
-      letter-spacing: .14em; text-transform: uppercase; color: var(--purple) !important;
+      margin: 0 0 5px !important; font-family: var(--head); font-size: 9.5px !important; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--purple) !important;
     }
-    .eyebrow.on-dark { color: var(--coral-soft) !important; }
+    .eyebrow.on-dark { color: var(--coral) !important; }
     .label {
-      margin: 0 0 3px !important; font-family: var(--head); font-size: 9px !important; font-weight: 800;
-      letter-spacing: .13em; text-transform: uppercase; color: var(--purple) !important;
+      margin: 0 0 3px !important; font-family: var(--head); font-size: 9px !important; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--purple) !important;
     }
-    .card.dark .label, .tone-dark .label { color: var(--coral-soft) !important; }
+    .card.dark .label, .tone-dark .label { color: var(--coral) !important; }
+    .card.dark .label.pro { color: var(--pro-mint) !important; }
 
     .pg-head { position: relative; padding-right: 64px; }
     .head-deco { position: absolute; right: -4px; top: -6px; width: 58px; height: 58px; }
@@ -187,45 +191,46 @@
     .folio {
       position: absolute; left: 24px; right: 22px; bottom: 13px;
       display: flex; justify-content: space-between;
-      font-size: 9.5px; letter-spacing: .04em; color: #8A84A8;
+      font-size: 9.5px; letter-spacing: .04em; color: #757096;
     }
     .folio span:last-child { font-weight: 700; color: var(--purple); }
 
     /* 3D Render Styling */
     .i3d {
       display: block;
-      filter: drop-shadow(0 8px 12px rgba(30, 27, 75, 0.24));
+      filter: drop-shadow(0 8px 12px rgba(43, 12, 117, 0.25));
     }
     .i3d svg { width: 100%; height: 100%; display: block; }
     .icon { width: 1em; height: 1em; flex: none; }
 
     .pill {
       align-self: flex-start; display: inline-block; margin: 0;
-      background: var(--coral); color: var(--indigo) !important;
-      padding: 6px 13px; border-radius: 999px; font-weight: 700; font-size: 12px !important;
+      background: var(--coral); color: #fff !important;
+      padding: 6px 13px; border-radius: 999px; font-weight: 600; font-size: 11.5px !important;
     }
     .small-pill { padding: 3px 10px; font-size: 10px !important; margin-bottom: 6px; }
     .grad-bar { display: block; width: 72px; height: 5px; border-radius: 3px; background: var(--gradient); }
 
-    .card { position: relative; border-radius: 16px; padding: 14px 16px; background: #fff; box-shadow: 0 1px 0 rgba(77, 33, 183, .06), 0 6px 16px -10px rgba(30, 27, 75, .25); }
-    .card.dark { background: var(--indigo); box-shadow: none; }
+    .card { position: relative; border-radius: 16px; padding: 13px 15px; background: #fff; box-shadow: 0 2px 14px -4px rgba(43, 12, 117, .12); border: 1px solid rgba(77, 33, 183, .08); }
+    .card.dark { background: var(--indigo); box-shadow: none; border: none; }
     .card.dark p { color: var(--muted-dark); }
     .card-deco { position: absolute; right: 10px; top: -14px; width: 52px; height: 52px; }
 
     .chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; }
     .chip {
-      font-size: 10.5px; font-weight: 600; line-height: 1; padding: 5px 8px; border-radius: 999px;
+      font-size: 10px; font-weight: 600; line-height: 1; padding: 5px 8px; border-radius: 999px;
       background: var(--lavender); color: var(--purple);
     }
-    .chip.on-dark { background: rgba(255, 255, 255, .12); color: #fff; }
+    .chip.on-dark { background: rgba(255, 255, 255, .14); color: #fff; }
+    .chip.pro-chip { background: rgba(132, 252, 163, .18); color: var(--pro-mint); }
 
-    .facts { display: grid; grid-template-columns: 84px 1fr; gap: 5px 10px; margin: 8px 0 0; font-size: 12px; line-height: 1.35; }
-    .facts dt { font-weight: 700; color: var(--ink); }
+    .facts { display: grid; grid-template-columns: 84px 1fr; gap: 5px 10px; margin: 8px 0 0; font-size: 11.5px; line-height: 1.35; }
+    .facts dt { font-weight: 600; color: var(--ink); }
     .facts dd { margin: 0; color: var(--muted); }
     .facts.on-dark dt { color: #fff; }
     .facts.on-dark dd { color: var(--muted-dark); }
 
-    .note { font-size: 10.5px !important; }
+    .note { font-size: 10px !important; }
 
     /* ---------- 1 Cover ---------- */
     .p-0, .p-last { padding: 0; }
@@ -233,15 +238,15 @@
     .close-img { height: 250px; }
     .cover-shade {
       position: absolute; left: 0; right: 0; top: 180px; height: 192px;
-      background: linear-gradient(to bottom, rgba(30, 27, 75, 0), var(--indigo));
+      background: linear-gradient(to bottom, rgba(43, 12, 117, 0), var(--indigo));
     }
     .close-shade { top: 120px; height: 132px; }
-    .logo-white { position: absolute; left: 24px; top: 22px; height: 30px; width: auto; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, .35)); display: flex; align-items: center; }
+    .logo-white { position: absolute; left: 24px; top: 22px; height: 30px; width: auto; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .45)); display: flex; align-items: center; }
     .cover-body {
       position: absolute; left: 24px; right: 22px; top: 318px; bottom: 24px;
       display: flex; flex-direction: column; gap: 12px;
     }
-    .cover-body .lead { font-size: 13.5px; color: var(--muted-dark); }
+    .cover-body .lead { font-size: 13px; color: var(--muted-dark); }
     .cover-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
     .hint { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted-dark); }
 
@@ -260,14 +265,14 @@
 
     /* ---------- 3 Group ---------- */
     .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .stat { border-radius: 14px; padding: 10px 12px; color: #fff; background: linear-gradient(135deg, #4D21B7, #7C3AED); }
+    .stat { border-radius: 14px; padding: 10px 12px; color: #fff; background: linear-gradient(135deg, #4D21B7, #805AE9); }
     .stat.s3 { background: var(--gradient); }
-    .stat b { display: block; font-family: var(--head); font-size: 22px; line-height: 1.05; font-weight: 800; }
-    .stat span { display: block; font-size: 10.5px; line-height: 1.3; opacity: .9; margin-top: 2px; }
+    .stat b { display: block; font-family: var(--head); font-size: 21px; line-height: 1.05; font-weight: 700; }
+    .stat span { display: block; font-size: 10px; line-height: 1.3; opacity: .92; margin-top: 2px; }
     .biz-list { display: flex; flex-direction: column; gap: 9px; }
     .biz { display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: center; }
     .biz .i3d { width: 44px; height: 44px; }
-    .biz p:not(.label) { font-size: 11.5px; line-height: 1.38; }
+    .biz p:not(.label) { font-size: 11px; line-height: 1.38; }
     .timeline {
       list-style: none; margin: auto 0 0; padding: 0;
       display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; position: relative;
@@ -276,37 +281,37 @@
     .timeline li { position: relative; padding-top: 14px; }
     .timeline li::before { content: ""; position: absolute; left: 0; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--purple); }
     .timeline li:last-child::before { background: var(--coral); }
-    .timeline b { display: block; font-family: var(--head); font-size: 11px; color: var(--purple); }
-    .timeline span { display: block; font-size: 9.5px; line-height: 1.25; color: var(--muted); }
+    .timeline b { display: block; font-family: var(--head); font-size: 10.5px; color: var(--purple); }
+    .timeline span { display: block; font-size: 9px; line-height: 1.25; color: var(--muted); }
 
     /* ---------- 4 Brands ---------- */
     .travel { padding-right: 70px; }
-    .travel p:last-child { font-size: 11.5px; }
-    .bgroups { display: flex; flex-direction: column; gap: 9px; margin-top: 8px; }
-    .bgroup { border-top: 1px solid var(--lavender); padding-top: 8px; }
-    .bgroup h3 { font-size: 12px; color: var(--purple); }
+    .travel p:last-child { font-size: 11px; }
+    .bgroups { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+    .bgroup { border-top: 1px solid var(--lavender); padding-top: 7px; }
+    .bgroup h3 { font-size: 11.5px; color: var(--purple); }
     .bgroup .chips { margin: 5px 0 4px; }
-    .bgroup p { font-size: 10.5px !important; line-height: 1.35 !important; }
-    .more-line { display: flex; align-items: center; gap: 6px; margin-top: 10px !important; font-size: 11px !important; font-weight: 600; color: var(--purple) !important; }
+    .bgroup p { font-size: 10px !important; line-height: 1.35 !important; }
+    .more-line { display: flex; align-items: center; gap: 6px; margin-top: 8px !important; font-size: 10.5px !important; font-weight: 600; color: var(--purple) !important; }
 
     /* ---------- 5 Originals ---------- */
     .orig { padding: 12px 14px; }
     .orig-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-    .orig h3 { font-size: 15px; }
-    .since { font-size: 10.5px !important; }
+    .orig h3 { font-size: 14.5px; }
+    .since { font-size: 10px !important; }
     .orig-facts { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .orig-facts li {
-      background: var(--lavender-2); border-radius: 10px; padding: 7px 8px;
-      font-family: var(--head); font-weight: 700; font-size: 11px; line-height: 1.25; color: var(--purple);
+      background: var(--lavender); border-radius: 10px; padding: 7px 8px;
+      font-family: var(--head); font-weight: 600; font-size: 10.5px; line-height: 1.25; color: var(--purple);
     }
     .works { padding-right: 72px; }
     .works .card-deco { top: auto; bottom: 8px; width: 52px; height: 52px; }
-    .works p:not(.label) { font-size: 11.5px; }
+    .works p:not(.label) { font-size: 11px; }
 
     /* ---------- 6 Team ---------- */
     .team-photo { width: 100%; height: 96px; object-fit: cover; border-radius: 14px; flex: none; }
-    .company { padding-top: 16px; }
-    .company p:not(.label) { font-size: 11.5px; }
+    .company { padding-top: 15px; }
+    .company p:not(.label) { font-size: 11px; }
     .logo-tile {
       position: absolute; right: 14px; top: 14px; border-radius: 10px; background: #fff;
       padding: 6px 10px; display: grid; place-items: center;
@@ -314,55 +319,55 @@
     .company h3 { padding-right: 110px; }
 
     /* ---------- 7 Principles ---------- */
-    .lp-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+    .lp-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5.5px; }
     .lp-list li {
-      display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: center;
+      display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center;
       background: #fff; border-radius: 12px; padding: 5px 10px 5px 8px;
     }
-    .lp-list .i3d { width: 36px; height: 36px; }
-    .lp-list h3 { font-size: 12.5px; }
-    .lp-list p { font-size: 11px !important; line-height: 1.3 !important; }
+    .lp-list .i3d { width: 34px; height: 34px; }
+    .lp-list h3 { font-size: 12px; }
+    .lp-list p { font-size: 10.5px !important; line-height: 1.28 !important; }
     .p-6 .note { margin-top: auto; }
 
     /* ---------- 8 Process ---------- */
     .next { padding-right: 16px; }
     .next .card-deco { width: 48px; height: 48px; top: -12px; }
-    .next .facts { grid-template-columns: 56px 1fr; font-size: 11.5px; }
-    .adjust { margin-top: 8px !important; font-size: 10.5px !important; color: var(--coral-soft) !important; line-height: 1.35 !important; }
-    .steps { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+    .next .facts { grid-template-columns: 56px 1fr; font-size: 11px; }
+    .adjust { margin-top: 7px !important; font-size: 10px !important; color: var(--coral-soft) !important; line-height: 1.35 !important; }
+    .steps { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6.5px; }
     .step { display: flex; gap: 10px; align-items: center; }
-    .step b { display: block; font-family: var(--head); font-size: 12px; color: var(--ink); }
-    .step div > span { display: block; font-size: 10.5px; color: var(--muted); line-height: 1.3; }
+    .step b { display: block; font-family: var(--head); font-size: 11.5px; color: var(--ink); }
+    .step div > span { display: block; font-size: 10px; color: var(--muted); line-height: 1.3; }
     .marker {
       flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
-      font-family: var(--head); font-weight: 800; font-size: 11px;
+      font-family: var(--head); font-weight: 700; font-size: 11px;
       border: 2px solid var(--purple); color: var(--purple); background: #fff;
     }
     .step.done .marker { background: var(--purple); color: #fff; }
-    .step.now .marker { background: var(--coral); border-color: var(--coral); color: var(--indigo); }
+    .step.now .marker { background: var(--coral); border-color: var(--coral); color: #fff; }
 
     /* ---------- 9 Prepare ---------- */
-    .tips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-    .tips li { display: grid; grid-template-columns: 34px 1fr; gap: 6px; background: #fff; border-radius: 14px; padding: 11px 12px 11px 10px; }
+    .tips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+    .tips li { display: grid; grid-template-columns: 34px 1fr; gap: 6px; background: #fff; border-radius: 14px; padding: 10px 12px 10px 10px; }
     .num {
-      font-family: var(--head); font-weight: 800; font-size: 20px; line-height: 1;
+      font-family: var(--head); font-weight: 700; font-size: 19px; line-height: 1;
       background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .tips h3 { margin-bottom: 3px; }
-    .tips p { font-size: 11.5px !important; line-height: 1.38 !important; }
+    .tips h3 { margin-bottom: 2px; }
+    .tips p { font-size: 11px !important; line-height: 1.36 !important; }
     .callout { margin-top: auto; }
-    .callout p:not(.label) { color: #fff !important; font-size: 12px; }
+    .callout p:not(.label) { color: #fff !important; font-size: 11.5px; }
 
     /* ---------- 10 Offer ---------- */
     .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-    .tile { background: var(--lavender-2); border-radius: 13px; padding: 10px 10px 11px; }
+    .tile { background: var(--lavender); border-radius: 13px; padding: 9px 10px 10px; }
     .tile-ico {
-      width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; margin-bottom: 6px;
-      background: var(--lavender); color: var(--purple);
+      width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center; margin-bottom: 5px;
+      background: #fff; color: var(--purple); font-size: 12px;
     }
-    .tile-ico.warm { background: #FFE6DF; color: #D24F33; }
-    .tile h3 { font-size: 12px; margin-bottom: 2px; }
-    .tile p { font-size: 10.5px !important; line-height: 1.33 !important; }
+    .tile-ico.warm { background: #FFE6E0; color: #D24F33; }
+    .tile h3 { font-size: 11.5px; margin-bottom: 2px; }
+    .tile p { font-size: 10px !important; line-height: 1.32 !important; }
     .p-9 .note { margin-top: auto; }
 
     /* ---------- 11 Close ---------- */
@@ -370,11 +375,11 @@
       position: absolute; left: 24px; right: 22px; top: 214px; bottom: 22px;
       display: flex; flex-direction: column; gap: 12px;
     }
-    .close-body h2 { font-size: 23px; color: #fff; }
-    .contact-card { background: var(--indigo-2); box-shadow: none; }
+    .close-body h2 { font-size: 22px; color: #fff; }
+    .contact-card { background: var(--indigo-2); box-shadow: none; border: none; }
     .contact-card h3 { color: #fff; margin-bottom: 6px; }
-    .contact-card p { font-size: 11.5px; }
-    .contact { display: flex; flex-direction: column; gap: 3px; margin-bottom: 6px !important; font-size: 13px !important; color: #fff !important; }
+    .contact-card p { font-size: 11px; }
+    .contact { display: flex; flex-direction: column; gap: 3px; margin-bottom: 6px !important; font-size: 12.5px !important; color: #fff !important; }
     .close-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
 
     /* ---------- Picker ---------- */
@@ -382,19 +387,19 @@
       width: min(920px, 100%); margin: 0 auto;
       padding: 40px max(20px, env(safe-area-inset-right)) 56px max(20px, env(safe-area-inset-left));
     }
-    .picker h1 { font-family: var(--head); font-weight: 800; font-size: clamp(30px, 6vw, 48px); line-height: 1.05; margin: 0 0 12px; }
-    .picker p { font-size: 16px; color: var(--muted-dark); margin: 0 0 8px; }
+    .picker h1 { font-family: var(--head); font-weight: 700; font-size: clamp(28px, 6vw, 44px); line-height: 1.08; margin: 0 0 12px; }
+    .picker p { font-size: 15px; color: var(--muted-dark); margin: 0 0 8px; }
     .pick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 28px 0; }
     .pick {
       display: block; width: 100%; padding: 0; text-align: left; cursor: pointer; color: inherit;
       background: var(--indigo-2); border-radius: 16px; overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .14); transition: transform .2s, border-color .2s;
+      border: 1px solid rgba(255, 255, 255, .16); transition: transform .2s, border-color .2s;
     }
     .pick:hover { transform: translateY(-4px); border-color: var(--coral); }
     .pick img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
     .pick-body { padding: 16px; }
-    .pick-body span { display: block; font-family: var(--head); font-weight: 800; font-size: 20px; margin-bottom: 4px; }
-    .pick-body small { display: block; font-size: 13px; color: var(--muted-dark); }
+    .pick-body span { display: block; font-family: var(--head); font-weight: 700; font-size: 19px; margin-bottom: 4px; }
+    .pick-body small { display: block; font-size: 12.5px; color: var(--muted-dark); }
 
     @media (max-width: 600px) {
       .topbar { font-size: 12px; }
@@ -429,50 +434,50 @@
   <div id="app"></div>
 
   <script>
-    // Self-Contained 3D Clay/Isometric SVG Icon Library (Zero External Dependencies)
+    // Self-Contained 3D Clay/Isometric SVG Icon Library styled with official HomeToGo Brand Colors
     const ICONS_3D = {
       suitcase: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-suit-1" x1="10" y1="16" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
-          <linearGradient id="g-suit-2" x1="12" y1="18" x2="52" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#C4B5FD"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+          <linearGradient id="g-suit-1" x1="10" y1="16" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#805AE9"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
+          <linearGradient id="g-suit-2" x1="12" y1="18" x2="52" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#EDEDFF"/><stop offset="1" stop-color="#8D7BFF"/></linearGradient>
         </defs>
-        <path d="M24 18V13C24 11.3 25.3 10 27 10H37C38.7 10 40 11.3 40 13V18" stroke="#FF795B" stroke-width="4.5" stroke-linecap="round"/>
-        <rect x="10" y="18" width="44" height="36" rx="10" fill="#2E1065"/>
+        <path d="M24 18V13C24 11.3 25.3 10 27 10H37C38.7 10 40 11.3 40 13V18" stroke="#FF7E64" stroke-width="4.5" stroke-linecap="round"/>
+        <rect x="10" y="18" width="44" height="36" rx="10" fill="#2B0C75"/>
         <rect x="10" y="16" width="44" height="35" rx="10" fill="url(#g-suit-1)"/>
         <path d="M10 26C10 20.5 14.5 16 20 16H44C49.5 16 54 20.5 54 26V28H10V26Z" fill="url(#g-suit-2)"/>
-        <rect x="20" y="16" width="4" height="35" fill="#FF795B"/>
-        <rect x="40" y="16" width="4" height="35" fill="#FF795B"/>
-        <rect x="28" y="25" width="8" height="6" rx="2" fill="#FDE68A"/>
+        <rect x="20" y="16" width="4" height="35" fill="#FF7E64"/>
+        <rect x="40" y="16" width="4" height="35" fill="#FF7E64"/>
+        <rect x="28" y="25" width="8" height="6" rx="2" fill="#84FCA3"/>
       </svg></span>`,
 
       blocks: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-blk-a" x1="12" y1="10" x2="36" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#38BDF8"/><stop offset="1" stop-color="#0284C7"/></linearGradient>
-          <linearGradient id="g-blk-b" x1="28" y1="22" x2="54" y2="50" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#5B21B6"/></linearGradient>
-          <linearGradient id="g-blk-c" x1="10" y1="30" x2="34" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9A85"/><stop offset="1" stop-color="#EA580C"/></linearGradient>
+          <linearGradient id="g-blk-a" x1="12" y1="10" x2="36" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#3290FF"/><stop offset="1" stop-color="#2B0C75"/></linearGradient>
+          <linearGradient id="g-blk-b" x1="28" y1="22" x2="54" y2="50" gradientUnits="userSpaceOnUse"><stop stop-color="#805AE9"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
+          <linearGradient id="g-blk-c" x1="10" y1="30" x2="34" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FF7E64"/><stop offset="1" stop-color="#FC7F4D"/></linearGradient>
         </defs>
         <rect x="12" y="10" width="22" height="22" rx="6" fill="url(#g-blk-a)"/>
         <rect x="10" y="32" width="22" height="22" rx="6" fill="url(#g-blk-c)"/>
         <rect x="32" y="22" width="23" height="26" rx="7" fill="url(#g-blk-b)"/>
-        <circle cx="23" cy="21" r="3" fill="#fff" fill-opacity="0.7"/>
-        <circle cx="43.5" cy="35" r="3.5" fill="#fff" fill-opacity="0.7"/>
+        <circle cx="23" cy="21" r="3" fill="#fff" fill-opacity="0.75"/>
+        <circle cx="43.5" cy="35" r="3.5" fill="#84FCA3"/>
       </svg></span>`,
 
       house: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-hs-roof" x1="10" y1="10" x2="54" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9A85"/><stop offset="1" stop-color="#E11D48"/></linearGradient>
-          <linearGradient id="g-hs-wall" x1="16" y1="26" x2="48" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDD6FE"/></linearGradient>
+          <linearGradient id="g-hs-roof" x1="10" y1="10" x2="54" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#FF7E64"/><stop offset="1" stop-color="#FC7F4D"/></linearGradient>
+          <linearGradient id="g-hs-wall" x1="16" y1="26" x2="48" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#EDEDFF"/></linearGradient>
         </defs>
         <rect x="15" y="26" width="34" height="28" rx="7" fill="url(#g-hs-wall)"/>
         <path d="M8 29L32 10L56 29C57.5 30.2 56.6 33 54.6 33H9.4C7.4 33 6.5 30.2 8 29Z" fill="url(#g-hs-roof)"/>
         <rect x="27" y="37" width="10" height="17" rx="4" fill="#4D21B7"/>
-        <circle cx="34.5" cy="46" r="1.3" fill="#FBBF24"/>
+        <circle cx="34.5" cy="46" r="1.4" fill="#84FCA3"/>
       </svg></span>`,
 
       hearts: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-hrt-1" x1="12" y1="14" x2="48" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9A85"/><stop offset="1" stop-color="#E11D48"/></linearGradient>
-          <linearGradient id="g-hrt-2" x1="34" y1="10" x2="56" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#C4B5FD"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
+          <linearGradient id="g-hrt-1" x1="12" y1="14" x2="48" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#FF7E64"/><stop offset="1" stop-color="#FF6FF9"/></linearGradient>
+          <linearGradient id="g-hrt-2" x1="34" y1="10" x2="56" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#805AE9"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
         </defs>
         <path d="M29 52C29 52 10 40.5 10 26.5C10 20.2 15 15.5 20.8 15.5C24.5 15.5 27.6 17.4 29 20.2C30.4 17.4 33.5 15.5 37.2 15.5C43 15.5 48 20.2 48 26.5C48 40.5 29 52 29 52Z" fill="url(#g-hrt-1)"/>
         <path d="M46 31C46 31 36 25 36 17.8C36 14.5 38.6 12 41.6 12C43.5 12 45.2 13 46 14.5C46.8 13 48.5 12 50.4 12C53.4 12 56 14.5 56 17.8C56 25 46 31 46 31Z" fill="url(#g-hrt-2)"/>
@@ -481,69 +486,69 @@
 
       flag: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-flg" x1="16" y1="12" x2="52" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9A85"/><stop offset="1" stop-color="#F43F5E"/></linearGradient>
+          <linearGradient id="g-flg" x1="16" y1="12" x2="52" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#FF7E64"/><stop offset="1" stop-color="#FC7F4D"/></linearGradient>
         </defs>
         <path d="M18 12H48C50.2 12 51.5 14.4 50.3 16.2L45 24L50.3 31.8C51.5 33.6 50.2 36 48 36H18V12Z" fill="url(#g-flg)"/>
         <rect x="14" y="10" width="5" height="44" rx="2.5" fill="#4D21B7"/>
-        <circle cx="16.5" cy="10" r="3.5" fill="#FBBF24"/>
+        <circle cx="16.5" cy="10" r="3.5" fill="#84FCA3"/>
       </svg></span>`,
 
       donut: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-dnt" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
+          <linearGradient id="g-dnt" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#805AE9"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
         </defs>
-        <circle cx="32" cy="34" r="21" fill="#2E1065"/>
+        <circle cx="32" cy="34" r="21" fill="#2B0C75"/>
         <circle cx="32" cy="31" r="21" fill="url(#g-dnt)"/>
-        <circle cx="32" cy="31" r="8" fill="#F5F2FE"/>
-        <path d="M18 22C21 17 26 15 32 15" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6"/>
-        <circle cx="43" cy="24" r="2.2" fill="#FF795B"/>
-        <circle cx="22" cy="40" r="2.2" fill="#38BDF8"/>
+        <circle cx="32" cy="31" r="8" fill="#EDEDFF"/>
+        <path d="M18 22C21 17 26 15 32 15" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-opacity="0.65"/>
+        <circle cx="43" cy="24" r="2.2" fill="#FF7E64"/>
+        <circle cx="22" cy="40" r="2.2" fill="#84FCA3"/>
       </svg></span>`,
 
       badge: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-bdg" x1="14" y1="10" x2="50" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#38BDF8"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
+          <linearGradient id="g-bdg" x1="14" y1="10" x2="50" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#3290FF"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
         </defs>
         <path d="M32 9L50 16V31C50 43.5 42.2 51.8 32 56C21.8 51.8 14 43.5 14 31V16L32 9Z" fill="url(#g-bdg)"/>
-        <path d="M25 32L30 37L40 26" stroke="#FDE047" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M25 32L30 37L40 26" stroke="#84FCA3" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg></span>`,
 
       rocket: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-rkt" x1="18" y1="10" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDD6FE"/></linearGradient>
-          <linearGradient id="g-rkt-tip" x1="34" y1="10" x2="52" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9A85"/><stop offset="1" stop-color="#E11D48"/></linearGradient>
+          <linearGradient id="g-rkt" x1="18" y1="10" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#EDEDFF"/></linearGradient>
+          <linearGradient id="g-rkt-tip" x1="34" y1="10" x2="52" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#FF7E64"/><stop offset="1" stop-color="#FC7F4D"/></linearGradient>
         </defs>
-        <path d="M14 42L10 52L20 48" fill="#F59E0B"/>
-        <path d="M22 30L12 34L18 42" fill="#7C3AED"/>
-        <path d="M34 42L30 52L22 46" fill="#7C3AED"/>
+        <path d="M14 42L10 52L20 48" fill="#FF7E64"/>
+        <path d="M22 30L12 34L18 42" fill="#805AE9"/>
+        <path d="M34 42L30 52L22 46" fill="#805AE9"/>
         <path d="M51 13C41 13 30 19 22 29L35 42C45 34 51 23 51 13Z" fill="url(#g-rkt)"/>
         <path d="M51 13C46 13 41 14.5 36.5 17.5L46.5 27.5C49.5 23 51 18 51 13Z" fill="url(#g-rkt-tip)"/>
-        <circle cx="35" cy="29" r="4.5" fill="#4D21B7" stroke="#C4B5FD" stroke-width="2"/>
+        <circle cx="35" cy="29" r="4.5" fill="#4D21B7" stroke="#84FCA3" stroke-width="2"/>
       </svg></span>`,
 
       plant: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-plt-pot" x1="20" y1="36" x2="44" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9A85"/><stop offset="1" stop-color="#EA580C"/></linearGradient>
-          <linearGradient id="g-plt-lf" x1="14" y1="14" x2="50" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#34D399"/><stop offset="1" stop-color="#059669"/></linearGradient>
+          <linearGradient id="g-plt-pot" x1="20" y1="36" x2="44" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FF7E64"/><stop offset="1" stop-color="#FC7F4D"/></linearGradient>
+          <linearGradient id="g-plt-lf" x1="14" y1="14" x2="50" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#84FCA3"/><stop offset="1" stop-color="#059669"/></linearGradient>
         </defs>
         <path d="M32 38V22" stroke="#059669" stroke-width="4" stroke-linecap="round"/>
         <path d="M32 28C22 28 16 22 16 15C24 15 32 19 32 28Z" fill="url(#g-plt-lf)"/>
         <path d="M32 25C42 25 48 19 48 12C40 12 32 16 32 25Z" fill="#10B981"/>
         <path d="M20 38H44L41 53C40.7 54.7 39.2 56 37.5 56H26.5C24.8 56 23.3 54.7 23 53L20 38Z" fill="url(#g-plt-pot)"/>
-        <rect x="18" y="35" width="28" height="5" rx="2.5" fill="#FDBA74"/>
+        <rect x="18" y="35" width="28" height="5" rx="2.5" fill="#FFB2A2"/>
       </svg></span>`,
 
       robot: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
-          <linearGradient id="g-rbt" x1="14" y1="18" x2="50" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#A78BFA"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
+          <linearGradient id="g-rbt" x1="14" y1="18" x2="50" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#805AE9"/><stop offset="1" stop-color="#4D21B7"/></linearGradient>
         </defs>
-        <line x1="32" y1="10" x2="32" y2="18" stroke="#FF795B" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="32" cy="9" r="4" fill="#FF795B"/>
+        <line x1="32" y1="10" x2="32" y2="18" stroke="#FF7E64" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="32" cy="9" r="4" fill="#FF7E64"/>
         <rect x="12" y="18" width="40" height="34" rx="12" fill="url(#g-rbt)"/>
-        <rect x="18" y="25" width="28" height="16" rx="8" fill="#1E1B4B"/>
-        <circle cx="26" cy="33" r="3.2" fill="#38BDF8"/>
-        <circle cx="38" cy="33" r="3.2" fill="#38BDF8"/>
-        <path d="M27 45H37" stroke="#C4B5FD" stroke-width="3" stroke-linecap="round"/>
+        <rect x="18" y="25" width="28" height="16" rx="8" fill="#2B0C75"/>
+        <circle cx="26" cy="33" r="3.2" fill="#84FCA3"/>
+        <circle cx="38" cy="33" r="3.2" fill="#84FCA3"/>
+        <path d="M27 45H37" stroke="#EDEDFF" stroke-width="3" stroke-linecap="round"/>
       </svg></span>`
     };
 
@@ -552,37 +557,37 @@
       hometogo: {
         white: `<svg height="28" viewBox="0 0 184 36" fill="none" aria-label="HomeToGo">
           <path d="M4 17.5C4 10.6 9.6 5 16.5 5C23.4 5 29 10.6 29 17.5V29C29 30.1 28.1 31 27 31H22.5V18.5C22.5 15.2 19.8 12.5 16.5 12.5C13.2 12.5 10.5 15.2 10.5 18.5V31H6C4.9 31 4 30.1 4 29V17.5Z" fill="#FFFFFF"/>
-          <circle cx="16.5" cy="22.5" r="3.2" fill="#FF795B"/>
-          <text x="38" y="25" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.03em">HomeToGo</text>
+          <circle cx="16.5" cy="22.5" r="3.2" fill="#FF7E64"/>
+          <text x="38" y="25" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="20" letter-spacing="-0.02em">HomeToGo</text>
         </svg>`,
         dark: `<svg height="22" viewBox="0 0 184 36" fill="none" aria-label="HomeToGo">
           <path d="M4 17.5C4 10.6 9.6 5 16.5 5C23.4 5 29 10.6 29 17.5V29C29 30.1 28.1 31 27 31H22.5V18.5C22.5 15.2 19.8 12.5 16.5 12.5C13.2 12.5 10.5 15.2 10.5 18.5V31H6C4.9 31 4 30.1 4 29V17.5Z" fill="#4D21B7"/>
-          <circle cx="16.5" cy="22.5" r="3.2" fill="#FF795B"/>
-          <text x="38" y="25" fill="#1E1B4B" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.03em">HomeToGo</text>
+          <circle cx="16.5" cy="22.5" r="3.2" fill="#FF7E64"/>
+          <text x="38" y="25" fill="#262626" font-family="Poppins, sans-serif" font-weight="700" font-size="20" letter-spacing="-0.02em">HomeToGo</text>
         </svg>`
       },
       interhome: {
         white: `<svg height="28" viewBox="0 0 175 36" fill="none" aria-label="Interhome">
           <rect x="4" y="5" width="26" height="26" rx="7" fill="#FFFFFF"/>
           <path d="M10 18.5L17 12L24 18.5V25H19.5V20H14.5V25H10V18.5Z" fill="#005596"/>
-          <text x="38" y="25" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.02em">Interhome</text>
+          <text x="38" y="25" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="20" letter-spacing="-0.02em">Interhome</text>
         </svg>`,
         dark: `<svg height="22" viewBox="0 0 175 36" fill="none" aria-label="Interhome">
           <rect x="4" y="5" width="26" height="26" rx="7" fill="#005596"/>
           <path d="M10 18.5L17 12L24 18.5V25H19.5V20H14.5V25H10V18.5Z" fill="#FFFFFF"/>
-          <text x="38" y="25" fill="#005596" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.02em">Interhome</text>
+          <text x="38" y="25" fill="#005596" font-family="Poppins, sans-serif" font-weight="700" font-size="20" letter-spacing="-0.02em">Interhome</text>
         </svg>`
       },
       smoobu: {
         white: `<svg height="28" viewBox="0 0 165 36" fill="none" aria-label="Smoobu">
           <rect x="4" y="5" width="26" height="26" rx="8" fill="#FFFFFF"/>
           <path d="M12 20.5C12 22.4 13.8 23.5 17 23.5C20.2 23.5 22 22.2 22 20.2C22 18.1 20 17.4 17 16.9C14 16.4 12.2 15.6 12.2 13.8C12.2 11.9 14 10.8 17 10.8C19.8 10.8 21.5 11.8 21.7 13.5" stroke="#00877A" stroke-width="2.8" stroke-linecap="round"/>
-          <text x="38" y="25" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.02em">Smoobu</text>
+          <text x="38" y="25" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="20" letter-spacing="-0.02em">Smoobu</text>
         </svg>`,
         dark: `<svg height="22" viewBox="0 0 165 36" fill="none" aria-label="Smoobu">
           <rect x="4" y="5" width="26" height="26" rx="8" fill="#00877A"/>
           <path d="M12 20.5C12 22.4 13.8 23.5 17 23.5C20.2 23.5 22 22.2 22 20.2C22 18.1 20 17.4 17 16.9C14 16.4 12.2 15.6 12.2 13.8C12.2 11.9 14 10.8 17 10.8C19.8 10.8 21.5 11.8 21.7 13.5" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
-          <text x="38" y="25" fill="#00877A" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.02em">Smoobu</text>
+          <text x="38" y="25" fill="#00877A" font-family="Poppins, sans-serif" font-weight="700" font-size="20" letter-spacing="-0.02em">Smoobu</text>
         </svg>`
       }
     };
@@ -591,8 +596,8 @@
       hometogo: {
         name: "HomeToGo",
         tagline: "B2C Marketplace & Central Tech · Berlin",
-        // Beach cabin on coastal dunes
-        coverImg: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=900&q=80",
+        // Classic stone French country house in rural Provence / countryside
+        coverImg: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80",
         p6Title: "HomeToGo, Berlin",
         p6Desc: "Home to the Group’s marketplace and many central teams, from Product and Engineering to Finance and People.",
         p6Office: "Berlin",
@@ -613,8 +618,8 @@
       interhome: {
         name: "Interhome",
         tagline: "Full-Service Holiday Homes · Zurich & 120+ Hubs",
-        // Swiss alpine wooden cabin / chalet
-        coverImg: "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=900&q=80",
+        // Wooden Swiss mountain chalet cabin in the Alps
+        coverImg: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=900&q=80",
         p6Title: "Interhome, Zurich & Hubs",
         p6Desc: "Europe’s leading holiday home specialist with 60+ years of heritage, caring for 70,000+ homes across 20+ countries.",
         p6Office: "Glattbrugg (Zurich) & Local",
@@ -769,23 +774,23 @@
             <div class="chips"><span class="chip on-dark">HomeToGo</span><span class="chip on-dark">GetAway Group</span></div>
             <p>Search and book stays in 30+ countries, plus short breaks through Kurz Mal Weg and Kurzurlaub.</p>
           </section>
-          <section class="card hosts">
+          <section class="card dark hosts">
             <div class="card-deco">${ICONS_3D.house}</div>
-            <p class="label">For hosts and partners</p>
+            <p class="label pro">For hosts and partners</p>
             <h3>HomeToGo_PRO</h3>
             <div class="bgroups">
-              <div class="bgroup">
-                <h3>Software</h3>
-                <div class="chips"><span class="chip">Smoobu</span><span class="chip">SECRA</span><span class="chip">Doppelgänger</span></div>
+              <div class="bgroup" style="border-color:rgba(255,255,255,0.14);">
+                <h3 style="color:#84FCA3;">Software</h3>
+                <div class="chips"><span class="chip pro-chip">Smoobu</span><span class="chip pro-chip">SECRA</span><span class="chip pro-chip">Doppelgänger</span></div>
                 <p>Tools for independent hosts, agencies, regions and travel agencies</p>
               </div>
-              <div class="bgroup">
-                <h3>Host services</h3>
-                <div class="chips"><span class="chip">my.HomeToGo</span><span class="chip">CaseVacanza.it</span><span class="chip">EscapadaRural</span><span class="chip">amivac</span></div>
+              <div class="bgroup" style="border-color:rgba(255,255,255,0.14);">
+                <h3 style="color:#84FCA3;">Host services</h3>
+                <div class="chips"><span class="chip on-dark">my.HomeToGo</span><span class="chip on-dark">CaseVacanza.it</span><span class="chip on-dark">EscapadaRural</span><span class="chip on-dark">amivac</span></div>
                 <p>Listing plans on HomeToGo, plus listing sites in Italy, Spain and France</p>
               </div>
             </div>
-            <p class="more-line">HomeToGo Originals and HomeToGo Works are on the next page →</p>
+            <p class="more-line" style="color:#84FCA3 !important;">HomeToGo Originals and HomeToGo Works are on the next page →</p>
           </section>
           <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>4</span></footer>
         </div>`,
@@ -796,7 +801,7 @@
             <p class="eyebrow">Who we are · HomeToGo Originals</p>
             <h2>Homes we look after</h2>
           </header>
-          <p style="font-size:12px;">Our property management companies care for holiday homes on behalf of their owners, from the first booking to the last clean.</p>
+          <p style="font-size:11.5px;">Our property management companies care for holiday homes on behalf of their owners, from the first booking to the last clean.</p>
           <section class="card orig">
             <div class="orig-head">
               <div style="width:36px;height:36px;">${ICONS_3D.house}</div>
