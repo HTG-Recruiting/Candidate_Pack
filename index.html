@@ -12,7 +12,6 @@
   <style>
     :root {
       color-scheme: dark;
-      /* Official HomeToGo Brand Guidelines */
       --purple: #4D21B7;
       --violet: #805AE9;
       --indigo: #2B0C75;
@@ -234,17 +233,18 @@
 
     /* ---------- 1 Cover ---------- */
     .p-0, .p-last { padding: 0; }
-    .cover-img, .close-img { position: absolute; left: 0; top: 0; width: 100%; height: 370px; object-fit: cover; }
-    .close-img { height: 250px; }
+    .cover-art, .close-art { position: absolute; left: 0; top: 0; width: 100%; height: 360px; overflow: hidden; }
+    .close-art { height: 245px; }
+    .cover-art svg, .close-art svg { width: 100%; height: 100%; display: block; }
     .cover-shade {
-      position: absolute; left: 0; right: 0; top: 180px; height: 192px;
+      position: absolute; left: 0; right: 0; top: 190px; height: 175px;
       background: linear-gradient(to bottom, rgba(43, 12, 117, 0), var(--indigo));
     }
-    .close-shade { top: 120px; height: 132px; }
-    .logo-white { position: absolute; left: 24px; top: 22px; height: 30px; width: auto; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .45)); display: flex; align-items: center; }
+    .close-shade { top: 120px; height: 130px; }
+    .logo-white { position: absolute; left: 24px; top: 22px; height: 30px; width: auto; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .45)); display: flex; align-items: center; z-index: 3; }
     .cover-body {
       position: absolute; left: 24px; right: 22px; top: 318px; bottom: 24px;
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex; flex-direction: column; gap: 12px; z-index: 3;
     }
     .cover-body .lead { font-size: 13px; color: var(--muted-dark); }
     .cover-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
@@ -252,7 +252,8 @@
 
     /* ---------- 2 Welcome ---------- */
     .p-1 { padding-top: 0; }
-    .band { margin: 0 -22px 0 -24px; width: calc(100% + 46px); height: 205px; object-fit: cover; flex: none; }
+    .band-art { margin: 0 -22px 0 -24px; width: calc(100% + 46px); height: 200px; flex: none; overflow: hidden; }
+    .band-art svg { width: 100%; height: 100%; display: block; }
     .welcome-body { display: flex; flex-direction: column; gap: 10px; padding-top: 6px; }
     .signature { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
     .signature b { display: block; font-family: var(--head); font-size: 13px; color: var(--ink); }
@@ -288,11 +289,11 @@
     .travel { padding-right: 70px; }
     .travel p:last-child { font-size: 11px; }
     .bgroups { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
-    .bgroup { border-top: 1px solid var(--lavender); padding-top: 7px; }
-    .bgroup h3 { font-size: 11.5px; color: var(--purple); }
+    .bgroup { border-top: 1px solid rgba(255, 255, 255, 0.14); padding-top: 7px; }
+    .bgroup h3 { font-size: 11.5px; color: var(--pro-mint); }
     .bgroup .chips { margin: 5px 0 4px; }
     .bgroup p { font-size: 10px !important; line-height: 1.35 !important; }
-    .more-line { display: flex; align-items: center; gap: 6px; margin-top: 8px !important; font-size: 10.5px !important; font-weight: 600; color: var(--purple) !important; }
+    .more-line { display: flex; align-items: center; gap: 6px; margin-top: 8px !important; font-size: 10.5px !important; font-weight: 600; color: var(--pro-mint) !important; }
 
     /* ---------- 5 Originals ---------- */
     .orig { padding: 12px 14px; }
@@ -309,14 +310,15 @@
     .works p:not(.label) { font-size: 11px; }
 
     /* ---------- 6 Team ---------- */
-    .team-photo { width: 100%; height: 96px; object-fit: cover; border-radius: 14px; flex: none; }
+    .team-art { width: 100%; height: 96px; border-radius: 14px; overflow: hidden; flex: none; }
+    .team-art svg { width: 100%; height: 100%; display: block; }
     .company { padding-top: 15px; }
     .company p:not(.label) { font-size: 11px; }
     .logo-tile {
       position: absolute; right: 14px; top: 14px; border-radius: 10px; background: #fff;
       padding: 6px 10px; display: grid; place-items: center;
     }
-    .company h3 { padding-right: 110px; }
+    .company h3 { padding-right: 115px; }
 
     /* ---------- 7 Principles ---------- */
     .lp-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5.5px; }
@@ -373,7 +375,7 @@
     /* ---------- 11 Close ---------- */
     .close-body {
       position: absolute; left: 24px; right: 22px; top: 214px; bottom: 22px;
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex; flex-direction: column; gap: 12px; z-index: 3;
     }
     .close-body h2 { font-size: 22px; color: #fff; }
     .contact-card { background: var(--indigo-2); box-shadow: none; border: none; }
@@ -396,7 +398,8 @@
       border: 1px solid rgba(255, 255, 255, .16); transition: transform .2s, border-color .2s;
     }
     .pick:hover { transform: translateY(-4px); border-color: var(--coral); }
-    .pick img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .pick-art { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
+    .pick-art svg { width: 100%; height: 100%; display: block; }
     .pick-body { padding: 16px; }
     .pick-body span { display: block; font-family: var(--head); font-weight: 700; font-size: 19px; margin-bottom: 4px; }
     .pick-body small { display: block; font-size: 12.5px; color: var(--muted-dark); }
@@ -434,7 +437,109 @@
   <div id="app"></div>
 
   <script>
-    // Self-Contained 3D Clay/Isometric SVG Icon Library styled with official HomeToGo Brand Colors
+    // Self-Contained Architectural & Landscape Scenes (Zero External Image Failures)
+    const SCENES = {
+      // French Country House in Provence with stone facade, terracotta roof, cypress trees & lavender rows
+      frenchHouse: `<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" fill="none">
+        <defs>
+          <linearGradient id="fr-sky" x1="0" y1="0" x2="0" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#3B2B82"/><stop offset="0.55" stop-color="#805AE9"/><stop offset="1" stop-color="#FFB2A2"/></linearGradient>
+          <linearGradient id="fr-hill" x1="0" y1="130" x2="0" y2="260" gradientUnits="userSpaceOnUse"><stop stop-color="#5B4B9E"/><stop offset="1" stop-color="#2B0C75"/></linearGradient>
+          <linearGradient id="fr-stone" x1="115" y1="95" x2="285" y2="205" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF3E0"/><stop offset="1" stop-color="#E6C9A8"/></linearGradient>
+        </defs>
+        <rect width="400" height="260" fill="url(#fr-sky)"/>
+        <circle cx="315" cy="68" r="26" fill="#FFE0B2" fill-opacity="0.45"/>
+        <path d="M0 155Q110 128 220 150T400 140V260H0Z" fill="url(#fr-hill)"/>
+        <!-- Cypress Trees -->
+        <path d="M72 185C72 135 80 100 84 100C88 100 96 135 96 185Z" fill="#1F2937"/>
+        <path d="M312 185C312 130 320 92 325 92C330 92 338 130 338 185Z" fill="#1F2937"/>
+        <path d="M342 190C342 148 348 118 352 118C356 118 362 148 362 190Z" fill="#2B0C75"/>
+        <!-- French Stone Country House -->
+        <rect x="120" y="108" width="160" height="82" rx="3" fill="url(#fr-stone)"/>
+        <polygon points="110,110 200,72 290,110" fill="#D96B43"/>
+        <polygon points="116,110 200,76 284,110" fill="#FF7E64"/>
+        <rect x="242" y="75" width="14" height="24" fill="#D96B43"/>
+        <!-- Arched Door & Lavender Shutters -->
+        <path d="M188 190V156C188 149.4 193.4 144 200 144C206.6 144 212 149.4 212 156V190H188Z" fill="#4D21B7"/>
+        <rect x="142" y="122" width="18" height="22" rx="2" fill="#2B0C75"/><rect x="135" y="122" width="6" height="22" fill="#805AE9"/><rect x="161" y="122" width="6" height="22" fill="#805AE9"/>
+        <rect x="240" y="122" width="18" height="22" rx="2" fill="#2B0C75"/><rect x="233" y="122" width="6" height="22" fill="#805AE9"/><rect x="259" y="122" width="6" height="22" fill="#805AE9"/>
+        <rect x="142" y="156" width="18" height="22" rx="2" fill="#2B0C75"/><rect x="135" y="156" width="6" height="22" fill="#805AE9"/><rect x="161" y="156" width="6" height="22" fill="#805AE9"/>
+        <rect x="240" y="156" width="18" height="22" rx="2" fill="#2B0C75"/><rect x="233" y="156" width="6" height="22" fill="#805AE9"/><rect x="259" y="156" width="6" height="22" fill="#805AE9"/>
+        <!-- Lavender Field Rows -->
+        <path d="M0 190H400V260H0Z" fill="#2B0C75"/>
+        <path d="M20 260L135 190M85 260L165 190M155 260L195 190M245 260L215 190M315 260L245 190M380 260L275 190" stroke="#805AE9" stroke-width="5" stroke-linecap="round" stroke-opacity="0.7"/>
+      </svg>`,
+
+      // Swiss Alpine Mountain Cabin / Wooden Chalet with Snow Peaks & Pine Forest
+      swissChalet: `<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" fill="none">
+        <defs>
+          <linearGradient id="ch-sky" x1="0" y1="0" x2="0" y2="170" gradientUnits="userSpaceOnUse"><stop stop-color="#1E1B4B"/><stop offset="0.6" stop-color="#4D21B7"/><stop offset="1" stop-color="#93C5FD"/></linearGradient>
+        </defs>
+        <rect width="400" height="260" fill="url(#ch-sky)"/>
+        <!-- Snow-Capped Swiss Alps -->
+        <polygon points="-20,185 95,48 210,185" fill="#3B2B82"/>
+        <polygon points="95,48 64,85 82,82 95,96 110,80 126,85" fill="#FFFFFF"/>
+        <polygon points="150,185 285,36 420,185" fill="#4D21B7"/>
+        <polygon points="285,36 245,80 268,76 285,94 304,75 324,80" fill="#EDEDFF"/>
+        <!-- Alpine Meadow -->
+        <path d="M0 172Q200 156 400 175V260H0Z" fill="#2B0C75"/>
+        <!-- Pine Trees -->
+        <polygon points="62,185 78,125 94,185" fill="#1E1B4B"/>
+        <polygon points="315,188 334,118 353,188" fill="#1E1B4B"/>
+        <!-- Wooden Swiss Mountain Cabin -->
+        <rect x="132" y="126" width="136" height="68" rx="3" fill="#7C3F23"/>
+        <rect x="132" y="152" width="136" height="6" fill="#4A2210"/>
+        <!-- Overhanging Alpine Chalet Roof -->
+        <polygon points="112,130 200,82 288,130 278,136 200,93 122,136" fill="#FFFFFF"/>
+        <polygon points="122,134 200,91 278,134" fill="#5C2D16"/>
+        <!-- Wooden Balcony & Warm Glowing Windows -->
+        <rect x="138" y="150" width="124" height="4" fill="#D97742"/>
+        <rect x="152" y="122" width="22" height="18" rx="2" fill="#FDE047"/>
+        <rect x="226" y="122" width="22" height="18" rx="2" fill="#FDE047"/>
+        <rect x="152" y="162" width="20" height="18" rx="2" fill="#FDE047"/>
+        <rect x="228" y="162" width="20" height="18" rx="2" fill="#FDE047"/>
+        <rect x="191" y="160" width="18" height="34" rx="2" fill="#3E1B0C"/>
+      </svg>`,
+
+      // Modern Sunlit Workspace / SaaS Hub for Smoobu
+      berlinHub: `<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" fill="none">
+        <defs>
+          <linearGradient id="sb-bg" x1="0" y1="0" x2="400" y2="260" gradientUnits="userSpaceOnUse"><stop stop-color="#2B0C75"/><stop offset="0.5" stop-color="#4D21B7"/><stop offset="1" stop-color="#00877A"/></linearGradient>
+        </defs>
+        <rect width="400" height="260" fill="url(#sb-bg)"/>
+        <circle cx="320" cy="70" r="85" fill="#84FCA3" fill-opacity="0.16"/>
+        <rect x="65" y="55" width="270" height="150" rx="18" fill="#1E1B4B" stroke="#805AE9" stroke-width="2"/>
+        <rect x="85" y="78" width="110" height="12" rx="6" fill="#84FCA3"/>
+        <rect x="85" y="102" width="230" height="24" rx="8" fill="#3A168E"/>
+        <rect x="85" y="136" width="150" height="24" rx="8" fill="#FF7E64"/>
+        <rect x="245" y="136" width="70" height="24" rx="8" fill="#3290FF"/>
+      </svg>`,
+
+      // Warm Reading & Welcome Lounge
+      welcomeRoom: `<svg viewBox="0 0 400 210" preserveAspectRatio="xMidYMid slice" fill="none">
+        <defs>
+          <linearGradient id="wl-bg" x1="0" y1="0" x2="400" y2="210" gradientUnits="userSpaceOnUse"><stop stop-color="#EDEDFF"/><stop offset="1" stop-color="#D8D2FF"/></linearGradient>
+        </defs>
+        <rect width="400" height="210" fill="url(#wl-bg)"/>
+        <circle cx="330" cy="55" r="70" fill="#FF7E64" fill-opacity="0.22"/>
+        <circle cx="70" cy="170" r="95" fill="#805AE9" fill-opacity="0.18"/>
+        <rect x="110" y="45" width="180" height="120" rx="20" fill="#FFFFFF" stroke="#805AE9" stroke-opacity="0.25" stroke-width="2"/>
+        <path d="M165 112C165 92.7 180.7 77 200 77C219.3 77 235 92.7 235 112V142H217V114C217 104.6 209.4 97 200 97C190.6 97 183 104.6 183 114V142H165V112Z" fill="#4D21B7"/>
+        <circle cx="200" cy="126" r="8" fill="#FF7E64"/>
+      </svg>`,
+
+      // Coastal Sunset Closing Scene
+      coastalClose: `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" fill="none">
+        <defs>
+          <linearGradient id="cl-sky" x1="0" y1="0" x2="0" y2="170" gradientUnits="userSpaceOnUse"><stop stop-color="#2B0C75"/><stop offset="0.55" stop-color="#805AE9"/><stop offset="1" stop-color="#FF7E64"/></linearGradient>
+        </defs>
+        <rect width="400" height="250" fill="url(#cl-sky)"/>
+        <circle cx="200" cy="135" r="42" fill="#FFE0B2" fill-opacity="0.65"/>
+        <path d="M0 145Q100 135 200 145T400 145V250H0Z" fill="#2B0C75"/>
+        <path d="M40 165H360M90 182H310" stroke="#FFB2A2" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+      </svg>`
+    };
+
+    // Official HomeToGo Brand Colors 3D Clay Icons
     const ICONS_3D = {
       suitcase: `<span class="i3d"><svg viewBox="0 0 64 64" fill="none">
         <defs>
@@ -596,8 +701,7 @@
       hometogo: {
         name: "HomeToGo",
         tagline: "B2C Marketplace & Central Tech · Berlin",
-        // Classic stone French country house in rural Provence / countryside
-        coverImg: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80",
+        coverScene: SCENES.frenchHouse,
         p6Title: "HomeToGo, Berlin",
         p6Desc: "Home to the Group’s marketplace and many central teams, from Product and Engineering to Finance and People.",
         p6Office: "Berlin",
@@ -618,8 +722,7 @@
       interhome: {
         name: "Interhome",
         tagline: "Full-Service Holiday Homes · Zurich & 120+ Hubs",
-        // Wooden Swiss mountain chalet cabin in the Alps
-        coverImg: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=900&q=80",
+        coverScene: SCENES.swissChalet,
         p6Title: "Interhome, Zurich & Hubs",
         p6Desc: "Europe’s leading holiday home specialist with 60+ years of heritage, caring for 70,000+ homes across 20+ countries.",
         p6Office: "Glattbrugg (Zurich) & Local",
@@ -640,7 +743,7 @@
       smoobu: {
         name: "Smoobu",
         tagline: "All-in-One Vacation Rental SaaS · Berlin",
-        coverImg: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80",
+        coverScene: SCENES.berlinHub,
         p6Title: "Smoobu, Berlin",
         p6Desc: "The all-in-one vacation rental software empowering independent hosts and agencies to synchronize calendars and scale direct bookings.",
         p6Office: "Berlin & Hybrid",
@@ -676,7 +779,7 @@
           <div class="pick-grid">
             ${Object.entries(COMPANIES).map(([key, c]) => `
               <button class="pick" data-pick="${key}">
-                <img src="${c.coverImg}" alt="${c.name}" />
+                <div class="pick-art">${c.coverScene}</div>
                 <div class="pick-body">
                   <span>${c.name}</span>
                   <small>${c.tagline}</small>
@@ -703,7 +806,7 @@
       return [
         // 1 Cover
         `<div class="pg tone-dark p-0">
-          <img class="cover-img" src="${c.coverImg}" alt="" />
+          <div class="cover-art">${c.coverScene}</div>
           <div class="cover-shade"></div>
           <div class="logo-white">${logoWhite}</div>
           <div class="cover-body">
@@ -719,7 +822,7 @@
 
         // 2 Welcome
         `<div class="pg tone-light p-1">
-          <img class="band" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="" />
+          <div class="band-art">${SCENES.welcomeRoom}</div>
           <div class="welcome-body">
             <p class="eyebrow">A note from your recruiter</p>
             <h2>Hello there,</h2>
@@ -779,18 +882,18 @@
             <p class="label pro">For hosts and partners</p>
             <h3>HomeToGo_PRO</h3>
             <div class="bgroups">
-              <div class="bgroup" style="border-color:rgba(255,255,255,0.14);">
-                <h3 style="color:#84FCA3;">Software</h3>
+              <div class="bgroup">
+                <h3>Software</h3>
                 <div class="chips"><span class="chip pro-chip">Smoobu</span><span class="chip pro-chip">SECRA</span><span class="chip pro-chip">Doppelgänger</span></div>
                 <p>Tools for independent hosts, agencies, regions and travel agencies</p>
               </div>
-              <div class="bgroup" style="border-color:rgba(255,255,255,0.14);">
-                <h3 style="color:#84FCA3;">Host services</h3>
+              <div class="bgroup">
+                <h3>Host services</h3>
                 <div class="chips"><span class="chip on-dark">my.HomeToGo</span><span class="chip on-dark">CaseVacanza.it</span><span class="chip on-dark">EscapadaRural</span><span class="chip on-dark">amivac</span></div>
                 <p>Listing plans on HomeToGo, plus listing sites in Italy, Spain and France</p>
               </div>
             </div>
-            <p class="more-line" style="color:#84FCA3 !important;">HomeToGo Originals and HomeToGo Works are on the next page →</p>
+            <p class="more-line">HomeToGo Originals and HomeToGo Works are on the next page →</p>
           </section>
           <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>4</span></footer>
         </div>`,
@@ -831,7 +934,7 @@
             <p class="eyebrow">Where you’d work · ${c.name}</p>
             <h2>Your company and your team</h2>
           </header>
-          <img class="team-photo" src="${c.coverImg}" alt="" />
+          <div class="team-art">${c.coverScene}</div>
           <section class="card dark company">
             <span class="logo-tile">${logoDark}</span>
             <p class="label">The company</p>
@@ -936,7 +1039,7 @@
 
         // 11 Close
         `<div class="pg tone-dark p-0 p-last">
-          <img class="close-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="" />
+          <div class="close-art">${SCENES.coastalClose}</div>
           <div class="cover-shade close-shade"></div>
           <div class="close-body">
             <p class="eyebrow on-dark">Before you go</p>
