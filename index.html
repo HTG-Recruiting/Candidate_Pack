@@ -65,6 +65,7 @@
       font-size: 13px;
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+    .brand img { height: 22px; width: auto; }
     .muted { opacity: .75; font-weight: 500; }
     .topbar-right { display: flex; align-items: center; gap: 12px; }
     .counter { font-variant-numeric: tabular-nums; opacity: .8; }
@@ -181,8 +182,8 @@
     }
     .card.dark .label, .tone-dark .label { color: var(--coral-soft) !important; }
 
-    .pg-head { position: relative; padding-right: 56px; }
-    .head-deco { position: absolute; right: 0; top: -2px; }
+    .pg-head { position: relative; padding-right: 64px; }
+    .head-deco { position: absolute; right: -4px; top: -6px; width: 62px; height: auto; }
 
     .folio {
       position: absolute; left: 24px; right: 22px; bottom: 13px;
@@ -191,19 +192,8 @@
     }
     .folio span:last-child { font-weight: 700; color: var(--purple); }
 
+    .i3d { display: block; object-fit: contain; }
     .icon { width: 1em; height: 1em; flex: none; }
-
-    /* Glossy 3D Vector Badges */
-    .i3d-badge {
-      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: #fff; flex: none;
-      box-shadow: 0 8px 16px -6px rgba(30, 27, 75, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-    }
-    .i3d-badge svg { width: 20px; height: 20px; }
-    .b-purple { background: linear-gradient(135deg, #7C3AED, #4D21B7); }
-    .b-coral { background: linear-gradient(135deg, #FF9A85, #FF5A5F); }
-    .b-blue { background: linear-gradient(135deg, #38BDF8, #005596); }
-    .b-teal { background: linear-gradient(135deg, #2DD4BF, #00877A); }
-    .b-amber { background: linear-gradient(135deg, #FBBF24, #EA580C); }
 
     .pill {
       align-self: flex-start; display: inline-block; margin: 0;
@@ -216,7 +206,7 @@
     .card { position: relative; border-radius: 16px; padding: 14px 16px; background: #fff; box-shadow: 0 1px 0 rgba(77, 33, 183, .06), 0 6px 16px -10px rgba(30, 27, 75, .25); }
     .card.dark { background: var(--indigo); box-shadow: none; }
     .card.dark p { color: var(--muted-dark); }
-    .card-deco { position: absolute; right: 12px; top: -12px; }
+    .card-deco { position: absolute; right: 10px; top: -14px; width: 54px; height: auto; }
 
     .chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; }
     .chip {
@@ -233,7 +223,7 @@
 
     .note { font-size: 10.5px !important; }
 
-    /* ---------- Page 1: Cover ---------- */
+    /* ---------- 1 Cover ---------- */
     .p-0, .p-last { padding: 0; }
     .cover-img, .close-img { position: absolute; left: 0; top: 0; width: 100%; height: 370px; object-fit: cover; }
     .close-img { height: 250px; }
@@ -242,7 +232,8 @@
       background: linear-gradient(to bottom, rgba(30, 27, 75, 0), var(--indigo));
     }
     .close-shade { top: 120px; height: 132px; }
-    .logo-white { position: absolute; left: 24px; top: 22px; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, .35)); }
+    .logo-white { position: absolute; left: 24px; top: 22px; height: 30px; width: auto; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, .35)); display: flex; align-items: center; }
+    .logo-white img { height: 30px; width: auto; }
     .cover-body {
       position: absolute; left: 24px; right: 22px; top: 318px; bottom: 24px;
       display: flex; flex-direction: column; gap: 12px;
@@ -251,9 +242,9 @@
     .cover-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
     .hint { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted-dark); }
 
-    /* ---------- Page 2: Welcome ---------- */
+    /* ---------- 2 Welcome ---------- */
     .p-1 { padding-top: 0; }
-    .band { margin: 0 -22px 0 -24px; width: calc(100% + 46px); height: 200px; object-fit: cover; flex: none; }
+    .band { margin: 0 -22px 0 -24px; width: calc(100% + 46px); height: 210px; object-fit: cover; flex: none; }
     .welcome-body { display: flex; flex-direction: column; gap: 10px; padding-top: 6px; }
     .signature { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
     .signature b { display: block; font-family: var(--head); font-size: 13px; color: var(--ink); }
@@ -262,16 +253,17 @@
       width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; flex: none;
       background: var(--gradient); color: #fff;
     }
-    .welcome-deco { position: absolute; right: 18px; bottom: 38px; }
+    .welcome-deco { position: absolute; right: 16px; bottom: 34px; width: 74px; height: auto; }
 
-    /* ---------- Page 3: Group ---------- */
+    /* ---------- 3 Group ---------- */
     .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .stat { border-radius: 14px; padding: 10px 12px; color: #fff; background: linear-gradient(135deg, #4D21B7, #7C3AED); }
     .stat.s3 { background: var(--gradient); }
     .stat b { display: block; font-family: var(--head); font-size: 22px; line-height: 1.05; font-weight: 800; }
     .stat span { display: block; font-size: 10.5px; line-height: 1.3; opacity: .9; margin-top: 2px; }
     .biz-list { display: flex; flex-direction: column; gap: 9px; }
-    .biz { display: grid; grid-template-columns: 40px 1fr; gap: 10px; align-items: center; }
+    .biz { display: grid; grid-template-columns: 42px 1fr; gap: 10px; align-items: center; }
+    .biz .i3d { width: 42px; height: 42px; }
     .biz p:not(.label) { font-size: 11.5px; line-height: 1.38; }
     .timeline {
       list-style: none; margin: auto 0 0; padding: 0;
@@ -284,9 +276,10 @@
     .timeline b { display: block; font-family: var(--head); font-size: 11px; color: var(--purple); }
     .timeline span { display: block; font-size: 9.5px; line-height: 1.25; color: var(--muted); }
 
-    /* ---------- Page 4: Brands ---------- */
-    .travel { padding-right: 64px; }
+    /* ---------- 4 Brands ---------- */
+    .travel { padding-right: 72px; }
     .travel p:last-child { font-size: 11.5px; }
+    .hosts .card-deco { top: -10px; }
     .bgroups { display: flex; flex-direction: column; gap: 9px; margin-top: 8px; }
     .bgroup { border-top: 1px solid var(--lavender); padding-top: 8px; }
     .bgroup h3 { font-size: 12px; color: var(--purple); }
@@ -294,43 +287,47 @@
     .bgroup p { font-size: 10.5px !important; line-height: 1.35 !important; }
     .more-line { display: flex; align-items: center; gap: 6px; margin-top: 10px !important; font-size: 11px !important; font-weight: 600; color: var(--purple) !important; }
 
-    /* ---------- Page 5: Originals ---------- */
+    /* ---------- 5 HomeToGo Originals ---------- */
     .orig { padding: 12px 14px; }
-    .orig-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .orig .logo-tile { position: static; float: left; margin: 0 10px 0 0; width: 38px; height: 38px; background: var(--lavender-2); }
     .orig h3 { font-size: 15px; }
     .since { font-size: 10.5px !important; }
-    .orig-facts { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .orig-facts { clear: both; list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .orig-facts li {
       background: var(--lavender-2); border-radius: 10px; padding: 7px 8px;
-      font-family: var(--head); font-weight: 700; font-size: 10.5px; line-height: 1.25; color: var(--purple);
+      font-family: var(--head); font-weight: 700; font-size: 11px; line-height: 1.25; color: var(--purple);
     }
-    .works { padding-right: 64px; }
+    .works { padding-right: 76px; }
+    .works .card-deco { top: auto; bottom: 8px; width: 56px; }
     .works p:not(.label) { font-size: 11.5px; }
 
-    /* ---------- Page 6: Team ---------- */
+    /* ---------- 6 Team ---------- */
     .team-photo { width: 100%; height: 96px; object-fit: cover; border-radius: 14px; flex: none; }
     .company { padding-top: 16px; }
     .company p:not(.label) { font-size: 11.5px; }
     .logo-tile {
-      position: absolute; right: 14px; top: 14px; border-radius: 10px; background: #fff;
-      padding: 6px 10px; display: grid; place-items: center;
+      position: absolute; right: 14px; top: 14px; width: 34px; height: 34px; border-radius: 10px; background: #fff;
+      display: grid; place-items: center; overflow: hidden;
     }
-    .company h3 { padding-right: 95px; }
+    .logo-tile img { width: 26px; height: 26px; object-fit: contain; }
+    .logo-tile.wide { width: 76px; padding: 0 6px; }
+    .logo-tile.wide img, .logo-tile.wide svg { width: 64px; height: auto; }
+    .company h3 { padding-right: 84px; }
 
-    /* ---------- Page 7: Principles ---------- */
+    /* ---------- 7 Principles ---------- */
     .lp-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
     .lp-list li {
-      display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: center;
+      display: grid; grid-template-columns: 38px 1fr; gap: 10px; align-items: center;
       background: #fff; border-radius: 12px; padding: 6px 10px 6px 8px;
     }
-    .lp-list .i3d-badge { width: 32px; height: 32px; border-radius: 9px; }
-    .lp-list .i3d-badge svg { width: 16px; height: 16px; }
+    .lp-list .i3d { width: 38px; height: 38px; }
     .lp-list h3 { font-size: 12.5px; }
     .lp-list p { font-size: 11px !important; line-height: 1.3 !important; }
     .p-6 .note { margin-top: auto; }
 
-    /* ---------- Page 8: Process ---------- */
+    /* ---------- 8 Process ---------- */
     .next { padding-right: 16px; }
+    .next .card-deco { width: 48px; top: -12px; }
     .next .facts { grid-template-columns: 56px 1fr; font-size: 11.5px; }
     .adjust { margin-top: 8px !important; font-size: 10.5px !important; color: var(--coral-soft) !important; line-height: 1.35 !important; }
     .steps { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
@@ -345,7 +342,7 @@
     .step.done .marker { background: var(--purple); color: #fff; }
     .step.now .marker { background: var(--coral); border-color: var(--coral); color: var(--indigo); }
 
-    /* ---------- Page 9: Prepare ---------- */
+    /* ---------- 9 Prepare ---------- */
     .tips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
     .tips li { display: grid; grid-template-columns: 34px 1fr; gap: 6px; background: #fff; border-radius: 14px; padding: 11px 12px 11px 10px; }
     .num {
@@ -357,7 +354,7 @@
     .callout { margin-top: auto; }
     .callout p:not(.label) { color: #fff !important; font-size: 12px; }
 
-    /* ---------- Page 10: Offer ---------- */
+    /* ---------- 10 Offer ---------- */
     .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
     .tile { background: var(--lavender-2); border-radius: 13px; padding: 10px 10px 11px; }
     .tile-ico {
@@ -369,7 +366,7 @@
     .tile p { font-size: 10.5px !important; line-height: 1.33 !important; }
     .p-9 .note { margin-top: auto; }
 
-    /* ---------- Page 11: Close ---------- */
+    /* ---------- 11 Close ---------- */
     .close-body {
       position: absolute; left: 24px; right: 22px; top: 214px; bottom: 22px;
       display: flex; flex-direction: column; gap: 12px;
@@ -380,8 +377,9 @@
     .contact-card p { font-size: 11.5px; }
     .contact { display: flex; flex-direction: column; gap: 3px; margin-bottom: 6px !important; font-size: 13px !important; color: #fff !important; }
     .close-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+    .close-foot img { height: 26px; width: auto; }
 
-    /* ---------- All Companies Picker ---------- */
+    /* ---------- Picker ---------- */
     .picker {
       width: min(920px, 100%); margin: 0 auto;
       padding: 40px max(20px, env(safe-area-inset-right)) 56px max(20px, env(safe-area-inset-left));
@@ -402,6 +400,7 @@
 
     @media (max-width: 600px) {
       .topbar { font-size: 12px; }
+      .brand img { height: 19px; }
       .stage { padding: 10px 12px 4px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -433,39 +432,45 @@
   <div id="app"></div>
 
   <script>
+    const IMG_CDN = "https://mareabs.github.io/Candidate-Pack/assets/img";
+
+    // Official HomeToGo Arch/Roof Emblem + Wordmark & Group Brand Logos
     const LOGOS = {
       hometogo: {
-        white: `<svg height="28" viewBox="0 0 165 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#fff"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#4D21B7"/><text x="36" y="22" fill="#fff" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="19">HomeToGo</text></svg>`,
-        dark: `<svg height="20" viewBox="0 0 155 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#4D21B7"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#fff"/><text x="35" y="22" fill="#1E1B4B" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="18">HomeToGo</text></svg>`
+        white: `<svg height="28" viewBox="0 0 184 36" fill="none" aria-label="HomeToGo">
+          <path d="M4 17.5C4 10.6 9.6 5 16.5 5C23.4 5 29 10.6 29 17.5V29C29 30.1 28.1 31 27 31H22.5V18.5C22.5 15.2 19.8 12.5 16.5 12.5C13.2 12.5 10.5 15.2 10.5 18.5V31H6C4.9 31 4 30.1 4 29V17.5Z" fill="#FFFFFF"/>
+          <circle cx="16.5" cy="22.5" r="3.2" fill="#FF795B"/>
+          <text x="38" y="25" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.03em">HomeToGo</text>
+        </svg>`,
+        dark: `<svg height="22" viewBox="0 0 184 36" fill="none" aria-label="HomeToGo">
+          <path d="M4 17.5C4 10.6 9.6 5 16.5 5C23.4 5 29 10.6 29 17.5V29C29 30.1 28.1 31 27 31H22.5V18.5C22.5 15.2 19.8 12.5 16.5 12.5C13.2 12.5 10.5 15.2 10.5 18.5V31H6C4.9 31 4 30.1 4 29V17.5Z" fill="#4D21B7"/>
+          <circle cx="16.5" cy="22.5" r="3.2" fill="#FF795B"/>
+          <text x="38" y="25" fill="#1E1B4B" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.03em">HomeToGo</text>
+        </svg>`
       },
       interhome: {
-        white: `<svg height="28" viewBox="0 0 165 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#fff"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#005596"/><text x="36" y="22" fill="#fff" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="19">Interhome</text></svg>`,
-        dark: `<svg height="20" viewBox="0 0 155 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#005596"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#fff"/><text x="35" y="22" fill="#005596" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="18">Interhome</text></svg>`
+        white: `<img src="${IMG_CDN}/brand/logo-interhome.png" alt="Interhome" style="background:#fff;padding:4px 8px;border-radius:8px;height:30px;">`,
+        dark: `<img src="${IMG_CDN}/brand/logo-interhome.png" alt="Interhome">`
       },
       smoobu: {
-        white: `<svg height="28" viewBox="0 0 155 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#fff"/><circle cx="14" cy="16" r="6.5" stroke="#00877A" stroke-width="3"/><text x="36" y="22" fill="#fff" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="19">Smoobu</text></svg>`,
-        dark: `<svg height="20" viewBox="0 0 145 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#00877A"/><circle cx="14" cy="16" r="6.5" stroke="#fff" stroke-width="3"/><text x="35" y="22" fill="#00877A" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="18">Smoobu</text></svg>`
+        white: `<svg height="28" viewBox="0 0 165 36" fill="none" aria-label="Smoobu">
+          <rect x="4" y="5" width="26" height="26" rx="8" fill="#FFFFFF"/>
+          <path d="M12 20.5C12 22.4 13.8 23.5 17 23.5C20.2 23.5 22 22.2 22 20.2C22 18.1 20 17.4 17 16.9C14 16.4 12.2 15.6 12.2 13.8C12.2 11.9 14 10.8 17 10.8C19.8 10.8 21.5 11.8 21.7 13.5" stroke="#00877A" stroke-width="2.8" stroke-linecap="round"/>
+          <text x="38" y="25" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.02em">Smoobu</text>
+        </svg>`,
+        dark: `<svg height="22" viewBox="0 0 165 36" fill="none" aria-label="Smoobu">
+          <rect x="4" y="5" width="26" height="26" rx="8" fill="#00877A"/>
+          <path d="M12 20.5C12 22.4 13.8 23.5 17 23.5C20.2 23.5 22 22.2 22 20.2C22 18.1 20 17.4 17 16.9C14 16.4 12.2 15.6 12.2 13.8C12.2 11.9 14 10.8 17 10.8C19.8 10.8 21.5 11.8 21.7 13.5" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+          <text x="38" y="25" fill="#00877A" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-0.02em">Smoobu</text>
+        </svg>`
       }
-    };
-
-    const ICONS = {
-      suitcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
-      blocks: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
-      house: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></svg>`,
-      hearts: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-4.35-9.33-8.28C.6 9.2 2.9 5 6.8 5c2.2 0 3.9 1.2 5.2 2.8C13.3 6.2 15 5 17.2 5c3.9 0 6.2 4.2 4.13 7.72C19 16.65 12 21 12 21z"/></svg>`,
-      flag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`,
-      donut: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>`,
-      badge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-      rocket: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>`,
-      plant: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20v-8m0 0c-3 0-6-2-6-6 3 0 6 2 6 6zm0 0c3 0 6-2 6-6-3 0-6 2-6 6z"/></svg>`,
-      robot: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg>`
     };
 
     const COMPANIES = {
       hometogo: {
         name: "HomeToGo",
         tagline: "B2C Marketplace & Central Tech · Berlin",
-        coverImg: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80",
+        coverImg: `${IMG_CDN}/cabin-dunes.jpg`,
         p6Title: "HomeToGo, Berlin",
         p6Desc: "Home to the Group’s marketplace and many central teams, from Product and Engineering to Finance and People.",
         p6Office: "Berlin",
@@ -486,7 +491,7 @@
       interhome: {
         name: "Interhome",
         tagline: "Full-Service Holiday Homes · Zurich & 120+ Hubs",
-        coverImg: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=800&q=80",
+        coverImg: `${IMG_CDN}/villa-sea.jpg`,
         p6Title: "Interhome, Zurich & Hubs",
         p6Desc: "Europe’s leading holiday home specialist with 60+ years of heritage, caring for 70,000+ homes across 20+ countries.",
         p6Office: "Glattbrugg (Zurich) & Local",
@@ -507,7 +512,7 @@
       smoobu: {
         name: "Smoobu",
         tagline: "All-in-One Vacation Rental SaaS · Berlin",
-        coverImg: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
+        coverImg: `${IMG_CDN}/reading-room.jpg`,
         p6Title: "Smoobu, Berlin",
         p6Desc: "The all-in-one vacation rental software empowering independent hosts and agencies to synchronize calendars and scale direct bookings.",
         p6Office: "Berlin & Hybrid",
@@ -551,7 +556,7 @@
               </button>
             `).join("")}
           </div>
-          <p class="picker-note">Tip: You can link directly to any company using <code>#hometogo</code>, <code>#interhome</code>, or <code>#smoobu</code>.</p>
+          <p class="picker-note" style="font-size:13px;opacity:.8;">Tip: Link directly to any company using <code>#hometogo</code>, <code>#interhome</code>, or <code>#smoobu</code>.</p>
         </div>
       `;
       app.querySelectorAll("[data-pick]").forEach(btn => {
@@ -586,7 +591,7 @@
 
         // 2 Welcome
         `<div class="pg tone-light p-1">
-          <img class="band" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="" />
+          <img class="band" src="${IMG_CDN}/reading-room.jpg" alt="" />
           <div class="welcome-body">
             <p class="eyebrow">A note from your recruiter</p>
             <h2>Hello there,</h2>
@@ -597,7 +602,7 @@
               <span><b>Your recruiter</b><small>Talent Acquisition, HomeToGo Group</small></span>
             </div>
           </div>
-          <span class="i3d-badge b-coral welcome-deco">${ICONS.hearts}</span>
+          <img class="i3d welcome-deco" src="${IMG_CDN}/icons/hearts.png" alt="" />
           <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>2</span></footer>
         </div>`,
 
@@ -614,9 +619,9 @@
             <div class="stat s3"><b>2021</b><span>listed on the Frankfurt Stock Exchange</span></div>
           </div>
           <div class="biz-list">
-            <div class="biz"><span class="i3d-badge b-purple">${ICONS.suitcase}</span><div><p class="label">Marketplace</p><h3>HomeToGo</h3><p>Apps and websites in 30+ countries where travelers search and book their stay.</p></div></div>
-            <div class="biz"><span class="i3d-badge b-teal">${ICONS.blocks}</span><div><p class="label">Software</p><h3>Smoobu and SECRA</h3><p>Tools that help hosts, agencies and tourism regions run their rentals.</p></div></div>
-            <div class="biz"><span class="i3d-badge b-blue">${ICONS.house}</span><div><p class="label">Services</p><h3>Interhome and more</h3><p>Property management and on-site services. Interhome looks after 70,000+ homes.</p></div></div>
+            <div class="biz"><img class="i3d" src="${IMG_CDN}/icons/suitcase.png" alt="" /><div><p class="label">Marketplace</p><h3>HomeToGo</h3><p>Apps and websites in 30+ countries where travelers search and book their stay.</p></div></div>
+            <div class="biz"><img class="i3d" src="${IMG_CDN}/icons/blocks.png" alt="" /><div><p class="label">Software</p><h3>Smoobu and SECRA</h3><p>Tools that help hosts, agencies and tourism regions run their rentals.</p></div></div>
+            <div class="biz"><img class="i3d" src="${IMG_CDN}/icons/house.png" alt="" /><div><p class="label">Services</p><h3>Interhome and more</h3><p>Property management and on-site services. Interhome looks after 70,000+ homes.</p></div></div>
           </div>
           <ol class="timeline">
             <li><b>2014</b><span>Founded in Berlin</span></li>
@@ -635,14 +640,14 @@
             <h2>How the Group fits together</h2>
           </header>
           <section class="card dark travel">
-            <span class="i3d-badge b-purple card-deco">${ICONS.suitcase}</span>
+            <img class="i3d card-deco" src="${IMG_CDN}/icons/suitcase.png" alt="" />
             <p class="label">For travelers</p>
             <h3>Marketplace</h3>
             <div class="chips"><span class="chip on-dark">HomeToGo</span><span class="chip on-dark">GetAway Group</span></div>
             <p>Search and book stays in 30+ countries, plus short breaks through Kurz Mal Weg and Kurzurlaub.</p>
           </section>
           <section class="card hosts">
-            <span class="i3d-badge b-teal card-deco">${ICONS.house}</span>
+            <img class="i3d card-deco" src="${IMG_CDN}/icons/house.png" alt="" />
             <p class="label">For hosts and partners</p>
             <h3>HomeToGo_PRO</h3>
             <div class="bgroups">
@@ -670,21 +675,19 @@
           </header>
           <p style="font-size:12px;">Our property management companies care for holiday homes on behalf of their owners, from the first booking to the last clean.</p>
           <section class="card orig">
-            <div class="orig-head">
-              <span class="i3d-badge b-blue">${ICONS.house}</span>
-              <div><h3>Interhome</h3><p class="since">Since 1965 · Zurich</p></div>
-            </div>
+            <span class="logo-tile"><img src="${IMG_CDN}/brand/logo-interhome.png" alt="Interhome" /></span>
+            <h3>Interhome</h3>
+            <p class="since">Since 1965 · Zurich</p>
             <ul class="orig-facts"><li>70,000+ homes</li><li>20+ countries</li><li>120+ local offices</li></ul>
           </section>
           <section class="card orig">
-            <div class="orig-head">
-              <span class="i3d-badge b-purple">${ICONS.house}</span>
-              <div><h3>Kraushaar</h3><p class="since">Since 1974 · Baltic coast</p></div>
-            </div>
+            <span class="logo-tile"><img src="${IMG_CDN}/brand/logo-kraushaar.png" alt="Kraushaar" /></span>
+            <h3>Kraushaar</h3>
+            <p class="since">Since 1974 · Baltic coast</p>
             <ul class="orig-facts"><li>About 1,700 homes</li><li>9 locations</li><li>Germany</li></ul>
           </section>
           <section class="card dark works">
-            <span class="i3d-badge b-teal card-deco" style="top:14px;">${ICONS.blocks}</span>
+            <img class="i3d card-deco" src="${IMG_CDN}/icons/house.png" alt="" />
             <p class="label">HomeToGo Works</p>
             <h3>timwork</h3>
             <p>Cleaning, laundry and upkeep for holiday homes on the Baltic coast.</p>
@@ -700,7 +703,7 @@
           </header>
           <img class="team-photo" src="${c.coverImg}" alt="" />
           <section class="card dark company">
-            <span class="logo-tile">${logoDark}</span>
+            <span class="logo-tile wide">${logoDark}</span>
             <p class="label">The company</p>
             <h3>${c.p6Title}</h3>
             <p>${c.p6Desc}</p>
@@ -720,14 +723,14 @@
             <h2>Our eight leadership principles</h2>
           </header>
           <ul class="lp-list">
-            <li><span class="i3d-badge b-coral">${ICONS.flag}</span><div><h3>Make Customers Successful</h3><p>Start with what travelers and hosts need.</p></div></li>
-            <li><span class="i3d-badge b-purple">${ICONS.donut}</span><div><h3>Bias for Results</h3><p>Focus on outcomes and measure what changed.</p></div></li>
-            <li><span class="i3d-badge b-blue">${ICONS.badge}</span><div><h3>Always be Responsible</h3><p>Own your work, decisions and their impact.</p></div></li>
-            <li><span class="i3d-badge b-amber">${ICONS.rocket}</span><div><h3>Act Entrepreneurial</h3><p>Spot opportunities and act like an owner.</p></div></li>
-            <li><span class="i3d-badge b-teal">${ICONS.blocks}</span><div><h3>Embrace Change, Reduce Complexity</h3><p>Adapt quickly and keep things simple.</p></div></li>
-            <li><span class="i3d-badge b-teal">${ICONS.plant}</span><div><h3>Hire and Develop the Best</h3><p>Raise the bar and help people grow.</p></div></li>
-            <li><span class="i3d-badge b-coral">${ICONS.hearts}</span><div><h3>Enable Each Other to Succeed</h3><p>Share what you know and help others win.</p></div></li>
-            <li><span class="i3d-badge b-purple">${ICONS.robot}</span><div><h3>Lead with AI</h3><p>Use AI every day and stay curious about it.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/flag.png" alt="" /><div><h3>Make Customers Successful</h3><p>Start with what travelers and hosts need.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/donut.png" alt="" /><div><h3>Bias for Results</h3><p>Focus on outcomes and measure what changed.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/badge.png" alt="" /><div><h3>Always be Responsible</h3><p>Own your work, decisions and their impact.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/rocket.png" alt="" /><div><h3>Act Entrepreneurial</h3><p>Spot opportunities and act like an owner.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/blocks.png" alt="" /><div><h3>Embrace Change, Reduce Complexity</h3><p>Adapt quickly and keep things simple.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/plant.png" alt="" /><div><h3>Hire and Develop the Best</h3><p>Raise the bar and help people grow.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/hearts.png" alt="" /><div><h3>Enable Each Other to Succeed</h3><p>Share what you know and help others win.</p></div></li>
+            <li><img class="i3d" src="${IMG_CDN}/icons/robot.png" alt="" /><div><h3>Lead with AI</h3><p>Use AI every day and stay curious about it.</p></div></li>
           </ul>
           <p class="note">We ask about real situations that show some of these. No need to memorize them: think of examples.</p>
           <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>7</span></footer>
@@ -740,7 +743,7 @@
             <h2>Your interview journey</h2>
           </header>
           <section class="card dark next">
-            <span class="i3d-badge b-coral card-deco">${ICONS.flag}</span>
+            <img class="i3d card-deco" src="${IMG_CDN}/icons/flag.png" alt="" />
             <p class="pill small-pill">Up next</p>
             <h3>Hiring manager interview</h3>
             <dl class="facts on-dark">
@@ -764,7 +767,7 @@
         // 9 Four things that help
         `<div class="pg tone-lav p-8">
           <header class="pg-head">
-            <span class="i3d-badge b-amber head-deco">${ICONS.rocket}</span>
+            <img class="i3d head-deco" src="${IMG_CDN}/icons/rocket.png" alt="" />
             <p class="eyebrow">How to prepare</p>
             <h2>Four things that help</h2>
           </header>
@@ -784,7 +787,7 @@
         // 10 Offer
         `<div class="pg tone-light p-9">
           <header class="pg-head">
-            <span class="i3d-badge b-teal head-deco">${ICONS.plant}</span>
+            <img class="i3d head-deco" src="${IMG_CDN}/icons/plant.png" alt="" />
             <p class="eyebrow">What we offer · ${c.name}</p>
             <h2>${c.offerTitle}</h2>
           </header>
@@ -803,7 +806,7 @@
 
         // 11 Close
         `<div class="pg tone-dark p-0 p-last">
-          <img class="close-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="" />
+          <img class="close-img" src="${IMG_CDN}/villa-sea.jpg" alt="" />
           <div class="cover-shade close-shade"></div>
           <div class="close-body">
             <p class="eyebrow on-dark">Before you go</p>
@@ -831,7 +834,7 @@
 
       app.innerHTML = `
         <header class="topbar">
-          <span class="brand">${LOGOS[key].white}<span class="muted">${c.name}</span></span>
+          <span class="brand">${LOGOS.hometogo.white}<span class="muted">${c.name}</span></span>
           <span class="topbar-right">
             <button class="switch" type="button" id="switchBtn">All companies</button>
             <span class="counter" id="counter">1 / ${total}</span>
@@ -909,7 +912,6 @@
         d.onclick = () => goTo(Number(d.dataset.go));
       });
 
-      // Swipe support on the book
       let startX = 0;
       const bookEl = document.getElementById("book");
       bookEl.addEventListener("touchstart", e => { startX = e.changedTouches[0].screenX; }, { passive: true });
@@ -925,11 +927,10 @@
 
     document.addEventListener("keydown", e => {
       if (!pageEls.length || document.body.classList.contains("is-picker")) return;
-      if (e.key === "ArrowRight") { current = Math.min(pageEls.length - 1, current + 1); document.getElementById("next")?.click(); }
-      if (e.key === "ArrowLeft") { current = Math.max(0, current - 1); document.getElementById("prev")?.click(); }
+      if (e.key === "ArrowRight") document.getElementById("next")?.click();
+      if (e.key === "ArrowLeft") document.getElementById("prev")?.click();
     });
 
-    // Boot: supports #hometogo, #interhome, #smoobu, ?e=..., or opens All Companies Picker
     const params = new URLSearchParams(window.location.search);
     const paramKey = (params.get("e") || window.location.hash.replace("#", "")).toLowerCase();
     if (COMPANIES[paramKey]) {
