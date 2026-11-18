@@ -5,744 +5,938 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#140B30" />
-  <title>Candidate Pack · HomeToGo Group</title>
+  <title>Candidate pack · HomeToGo Group</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" />
   <style>
     :root {
-      --bg-stage: #140B30;
-      --purple-deep: #1E1047;
-      --purple-main: #4D21B5;
-      --lavender-bg: #F4F1FC;
-      --light-bg: #FFFFFF;
-      --ink: #171326;
-      --ink-muted: #5A5470;
-      --accent-grad: linear-gradient(90deg, #FF5A5F 0%, #8A4FFF 50%, #00A896 100%);
-      --brand-color: #4D21B5;
-      --radius-page: 24px;
-      --radius-card: 16px;
+      color-scheme: dark;
+      --purple: #4D21B7;
+      --violet: #7C3AED;
+      --indigo: #1E1B4B;
+      --indigo-2: #2B2468;
+      --lavender: #EDE9FE;
+      --lavender-2: #F5F2FE;
+      --paper: #FBF9FE;
+      --ink: #1E1B4B;
+      --muted: #555170;
+      --muted-dark: #CFC9F2;
+      --coral: #FF795B;
+      --coral-soft: #FFB09E;
+      --gradient: linear-gradient(120deg, #4D21B7 0%, #7A37A4 55%, #FF795B 100%);
+      --stage: #120F33;
+      --head: "Plus Jakarta Sans", "Figtree", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --body: "Figtree", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --flip-ms: 900ms;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
     body {
-      font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at top, #28165C 0%, var(--bg-stage) 75%);
-      color: var(--ink);
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
+      margin: 0;
+      height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+      font-family: var(--body);
+      color: var(--paper);
+      background: radial-gradient(110% 70% at 50% 0%, #3B1F8F 0%, var(--stage) 65%);
       -webkit-font-smoothing: antialiased;
     }
+    body.is-picker { height: auto; min-height: 100svh; overflow: auto; display: block; }
 
-    h1, h2, h3, .eyebrow, .stat b {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    #app { display: contents; }
+    a { color: inherit; }
+    button { font-family: inherit; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
     }
+    :focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
 
-    /* Topbar */
+    /* ---------- Top bar and controls ---------- */
+
     .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 24px;
-      color: #fff;
-      max-width: 620px;
-      width: 100%;
-      margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: max(12px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+      font-size: 13px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+    .muted { opacity: .75; font-weight: 500; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .counter { font-variant-numeric: tabular-nums; opacity: .8; }
+    .switch {
+      font-size: 12px; color: var(--paper); cursor: pointer;
+      background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 999px; padding: 5px 11px;
+    }
+    .switch:hover { background: rgba(255, 255, 255, .18); }
+
+    .controls {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 4px 16px max(14px, env(safe-area-inset-bottom));
+    }
+    .nav {
+      width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+      background: rgba(255, 255, 255, .1); color: var(--paper);
+      border: 1px solid rgba(255, 255, 255, .22); cursor: pointer; transition: background .2s;
+    }
+    .nav:hover:not(:disabled) { background: rgba(255, 255, 255, .2); }
+    .nav:disabled { opacity: .3; cursor: default; }
+    .nav .icon { width: 22px; height: 22px; }
+    .dots { display: flex; flex-wrap: wrap; justify-content: center; }
+    .dot {
+      width: 20px; height: 36px; padding: 0; border: 0; background: none; cursor: pointer;
+      display: grid; place-items: center; transition: width .25s;
+    }
+    .dot::before {
+      content: ""; display: block; width: 8px; height: 8px; border-radius: 4px;
+      background: rgba(255, 255, 255, .35); transition: width .25s, background .25s;
+    }
+    .dot.on { width: 36px; }
+    .dot.on::before { width: 24px; background: var(--gradient); }
+
+    /* ---------- The 3D Book ---------- */
+
+    .stage { display: grid; place-items: center; padding: 14px 16px 6px; min-height: 0; }
+    .book { position: relative; z-index: 0; --s: 1; }
+
+    .book::before, .book::after { content: ""; position: absolute; pointer-events: none; }
+    .book::before {
+      inset: -8px -11px -8px -6px; z-index: -2; border-radius: 6px 14px 14px 6px;
+      background: linear-gradient(90deg, #160F45 0, #3A1C99 10px, #34198A 100%);
+      box-shadow: 0 34px 60px -20px rgba(0, 0, 0, .7);
+    }
+    .book::after {
+      top: 3px; bottom: 3px; right: -6px; width: 8px; z-index: -1; border-radius: 0 5px 5px 0;
+      background: repeating-linear-gradient(to right, #F7F4FE 0 1px, #CDC4EA 1px 2px);
     }
 
-    .brand-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-title .muted {
-      font-weight: 500;
-      opacity: 0.72;
-      padding-left: 10px;
-      border-left: 1px solid rgba(255,255,255,0.25);
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .company-select {
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      outline: none;
-    }
-    .company-select option { color: var(--ink); background: #fff; }
-
-    .counter {
-      font-size: 0.82rem;
-      font-weight: 600;
-      opacity: 0.8;
-      min-width: 44px;
-      text-align: right;
-    }
-
-    /* Stage & Book */
-    .stage {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 16px;
-    }
-
-    .book {
-      width: 100%;
-      max-width: 460px;
-      height: min(780px, 78dvh);
-      position: relative;
-      border-radius: var(--radius-page);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
-      overflow: hidden;
-      background: var(--light-bg);
-    }
+    .pages { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 0% 50%; }
 
     .page {
-      position: absolute;
-      inset: 0;
-      display: none;
-      flex-direction: column;
-      padding: 28px 26px 20px;
-      overflow-y: auto;
-      animation: pageEnter 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: absolute; inset: 0; z-index: var(--z);
+      transform-origin: 0 50%; transform-style: preserve-3d;
+      transition: transform var(--flip-ms) cubic-bezier(.45, .05, .2, 1);
+    }
+    .page.flipped { transform: rotateY(-180deg); }
+    .page.gone { visibility: hidden; }
+    .no-anim, .no-anim * { transition: none !important; }
+
+    .face {
+      position: absolute; inset: 0; overflow: hidden;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 2px 10px 10px 2px;
+      box-shadow: 0 1px 2px rgba(20, 11, 48, .18);
+    }
+    .front { background: var(--paper); }
+    .front::before {
+      content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 7%; z-index: 5; pointer-events: none;
+      background: linear-gradient(to right, rgba(20, 11, 48, .26), rgba(20, 11, 48, .07) 45%, rgba(20, 11, 48, 0));
+    }
+    .front::after {
+      content: ""; position: absolute; inset: 0; z-index: 6; pointer-events: none;
+      background: linear-gradient(to right, rgba(20, 11, 48, 0) 30%, rgba(20, 11, 48, .45));
+      opacity: 0; transition: opacity var(--flip-ms);
+    }
+    .page.flipped .front::after { opacity: 1; }
+    .back { transform: rotateY(180deg); background: linear-gradient(to left, #F1EDFC, #D8CFF0); }
+
+    .canvas {
+      position: absolute; left: 0; top: 0; width: 360px; height: 640px;
+      transform: scale(var(--s)); transform-origin: 0 0;
     }
 
-    .page.active { display: flex; }
+    /* ---------- Page Base ---------- */
 
-    @keyframes pageEnter {
-      from { opacity: 0; transform: translateX(18px); }
-      to { opacity: 1; transform: translateX(0); }
+    .pg {
+      position: absolute; inset: 0; overflow: hidden;
+      padding: 24px 22px 38px 24px;
+      display: flex; flex-direction: column; gap: 12px;
+      font-family: var(--body); color: var(--ink);
     }
+    .tone-light { background: var(--paper); }
+    .tone-lav { background: var(--lavender-2); }
+    .tone-dark { background: var(--indigo); color: #fff; }
 
-    .tone-dark {
-      background: linear-gradient(155deg, #1E1047 0%, var(--brand-color) 100%);
-      color: #fff;
-      justify-content: space-between;
-    }
+    .pg p { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+    .tone-dark p { color: var(--muted-dark); }
+    .pg h1, .pg h2, .pg h3 { margin: 0; font-family: var(--head); color: var(--ink); text-wrap: balance; }
+    .pg h1 { font-size: 31px; line-height: 1.08; font-weight: 800; letter-spacing: -.02em; color: #fff; }
+    .pg h2 { font-size: 22px; line-height: 1.15; font-weight: 800; letter-spacing: -.015em; }
+    .pg h3 { font-size: 13.5px; line-height: 1.25; font-weight: 700; }
+    .tone-dark h2, .tone-dark h3, .card.dark h3 { color: #fff; }
 
-    .tone-light { background: #FFFFFF; color: var(--ink); }
-    .tone-lav { background: var(--lavender-bg); color: var(--ink); }
-
-    /* Typography & Common Blocks */
     .eyebrow {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--brand-color);
-      margin-bottom: 6px;
+      margin: 0 0 6px !important; font-family: var(--head); font-size: 9.5px !important; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--purple) !important;
     }
-    .eyebrow.on-dark { color: rgba(255,255,255,0.75); }
+    .eyebrow.on-dark { color: var(--coral-soft) !important; }
+    .label {
+      margin: 0 0 3px !important; font-family: var(--head); font-size: 9px !important; font-weight: 800;
+      letter-spacing: .13em; text-transform: uppercase; color: var(--purple) !important;
+    }
+    .card.dark .label, .tone-dark .label { color: var(--coral-soft) !important; }
 
-    .pg-head { margin-bottom: 18px; }
-    .pg-head h2 {
-      font-size: 1.55rem;
-      font-weight: 800;
-      line-height: 1.18;
-      letter-spacing: -0.02em;
-    }
+    .pg-head { position: relative; padding-right: 56px; }
+    .head-deco { position: absolute; right: 0; top: -2px; }
 
-    .cover-body { margin-top: auto; }
-    .cover-body h1 {
-      font-size: 2.15rem;
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-      margin-bottom: 14px;
-    }
-    .cover-body .lead {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.86);
-      margin-bottom: 28px;
-    }
-
-    .grad-bar {
-      display: block;
-      height: 5px;
-      width: 100%;
-      border-radius: 999px;
-      background: var(--accent-grad);
-      margin-bottom: 12px;
-    }
-
-    .hint {
-      font-size: 0.82rem;
-      font-weight: 600;
-      opacity: 0.85;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Cards & Grids */
-    .card {
-      background: #fff;
-      border-radius: var(--radius-card);
-      padding: 16px 18px;
-      margin-bottom: 12px;
-      border: 1px solid rgba(23, 19, 38, 0.08);
-    }
-    .tone-light .card { background: #F8F7FC; }
-
-    .card.dark {
-      background: #1B113A;
-      color: #fff;
-      border: none;
-    }
-
-    .card .label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      opacity: 0.7;
-      margin-bottom: 4px;
-    }
-
-    .card h3 { font-size: 1.12rem; margin-bottom: 6px; }
-    .card p { font-size: 0.88rem; line-height: 1.45; opacity: 0.9; }
-
-    .stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    .stat {
-      background: #F4F1FC;
-      padding: 12px 14px;
-      border-radius: 14px;
-    }
-    .stat b { display: block; font-size: 1.35rem; color: var(--brand-color); }
-    .stat span { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.3; display: block; }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 10px; }
-    .chip {
-      font-size: 0.76rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #EFEAFB;
-      color: var(--purple-main);
-    }
-    .chip.on-dark { background: rgba(255,255,255,0.16); color: #fff; }
-
-    /* Leadership Principles */
-    .lp-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .lp-list li {
-      background: #fff;
-      padding: 10px 14px;
-      border-radius: 12px;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-    .lp-num {
-      font-weight: 800;
-      font-size: 0.78rem;
-      color: var(--brand-color);
-      background: #EFEAFB;
-      padding: 3px 7px;
-      border-radius: 6px;
-      margin-top: 2px;
-    }
-    .lp-list h3 { font-size: 0.92rem; margin-bottom: 1px; }
-    .lp-list p { font-size: 0.8rem; color: var(--ink-muted); }
-
-    /* Steps */
-    .steps { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-    .step { display: flex; gap: 12px; align-items: flex-start; font-size: 0.86rem; }
-    .marker {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: #E7E3F3; color: var(--ink);
-      font-weight: 700; font-size: 0.76rem;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .step.done .marker { background: #00A896; color: #fff; }
-    .step.now .marker { background: var(--brand-color); color: #fff; }
-    .step b { display: block; font-size: 0.9rem; }
-    .step span { color: var(--ink-muted); font-size: 0.8rem; }
-
-    /* Tiles */
-    .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .tile {
-      background: #F7F6FB;
-      padding: 12px;
-      border-radius: 14px;
-    }
-    .tile h3 { font-size: 0.9rem; margin-bottom: 3px; }
-    .tile p { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.38; }
-
-    /* Facts */
-    .facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 0.84rem; margin-top: 10px; }
-    .facts dt { opacity: 0.7; font-weight: 600; }
-    .facts dd { font-weight: 600; }
-
-    /* Folio */
     .folio {
-      margin-top: auto;
-      padding-top: 14px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.74rem;
-      color: var(--ink-muted);
-      font-weight: 600;
+      position: absolute; left: 24px; right: 22px; bottom: 13px;
+      display: flex; justify-content: space-between;
+      font-size: 9.5px; letter-spacing: .04em; color: #8A84A8;
     }
+    .folio span:last-child { font-weight: 700; color: var(--purple); }
 
-    /* Controls */
-    .controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      padding: 12px 16px 20px;
+    .icon { width: 1em; height: 1em; flex: none; }
+
+    /* Glossy 3D Vector Badges */
+    .i3d-badge {
+      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: #fff; flex: none;
+      box-shadow: 0 8px 16px -6px rgba(30, 27, 75, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
     }
-    .nav-btn {
-      width: 38px; height: 38px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.1);
-      color: #fff; font-size: 1.1rem; cursor: pointer;
+    .i3d-badge svg { width: 20px; height: 20px; }
+    .b-purple { background: linear-gradient(135deg, #7C3AED, #4D21B7); }
+    .b-coral { background: linear-gradient(135deg, #FF9A85, #FF5A5F); }
+    .b-blue { background: linear-gradient(135deg, #38BDF8, #005596); }
+    .b-teal { background: linear-gradient(135deg, #2DD4BF, #00877A); }
+    .b-amber { background: linear-gradient(135deg, #FBBF24, #EA580C); }
+
+    .pill {
+      align-self: flex-start; display: inline-block; margin: 0;
+      background: var(--coral); color: var(--indigo) !important;
+      padding: 6px 13px; border-radius: 999px; font-weight: 700; font-size: 12px !important;
     }
-    .nav-btn:disabled { opacity: 0.3; cursor: default; }
-    .dots { display: flex; gap: 6px; }
-    .dot {
-      width: 8px; height: 8px; border-radius: 999px;
-      border: none; background: rgba(255,255,255,0.3);
-      cursor: pointer; transition: all 0.2s;
+    .small-pill { padding: 3px 10px; font-size: 10px !important; margin-bottom: 6px; }
+    .grad-bar { display: block; width: 72px; height: 5px; border-radius: 3px; background: var(--gradient); }
+
+    .card { position: relative; border-radius: 16px; padding: 14px 16px; background: #fff; box-shadow: 0 1px 0 rgba(77, 33, 183, .06), 0 6px 16px -10px rgba(30, 27, 75, .25); }
+    .card.dark { background: var(--indigo); box-shadow: none; }
+    .card.dark p { color: var(--muted-dark); }
+    .card-deco { position: absolute; right: 12px; top: -12px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; }
+    .chip {
+      font-size: 10.5px; font-weight: 600; line-height: 1; padding: 5px 8px; border-radius: 999px;
+      background: var(--lavender); color: var(--purple);
     }
-    .dot.on { width: 22px; background: #fff; }
+    .chip.on-dark { background: rgba(255, 255, 255, .12); color: #fff; }
+
+    .facts { display: grid; grid-template-columns: 84px 1fr; gap: 5px 10px; margin: 8px 0 0; font-size: 12px; line-height: 1.35; }
+    .facts dt { font-weight: 700; color: var(--ink); }
+    .facts dd { margin: 0; color: var(--muted); }
+    .facts.on-dark dt { color: #fff; }
+    .facts.on-dark dd { color: var(--muted-dark); }
+
+    .note { font-size: 10.5px !important; }
+
+    /* ---------- Page 1: Cover ---------- */
+    .p-0, .p-last { padding: 0; }
+    .cover-img, .close-img { position: absolute; left: 0; top: 0; width: 100%; height: 370px; object-fit: cover; }
+    .close-img { height: 250px; }
+    .cover-shade {
+      position: absolute; left: 0; right: 0; top: 180px; height: 192px;
+      background: linear-gradient(to bottom, rgba(30, 27, 75, 0), var(--indigo));
+    }
+    .close-shade { top: 120px; height: 132px; }
+    .logo-white { position: absolute; left: 24px; top: 22px; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, .35)); }
+    .cover-body {
+      position: absolute; left: 24px; right: 22px; top: 318px; bottom: 24px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cover-body .lead { font-size: 13.5px; color: var(--muted-dark); }
+    .cover-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+    .hint { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted-dark); }
+
+    /* ---------- Page 2: Welcome ---------- */
+    .p-1 { padding-top: 0; }
+    .band { margin: 0 -22px 0 -24px; width: calc(100% + 46px); height: 200px; object-fit: cover; flex: none; }
+    .welcome-body { display: flex; flex-direction: column; gap: 10px; padding-top: 6px; }
+    .signature { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+    .signature b { display: block; font-family: var(--head); font-size: 13px; color: var(--ink); }
+    .signature small { font-size: 10.5px; color: var(--muted); }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; flex: none;
+      background: var(--gradient); color: #fff;
+    }
+    .welcome-deco { position: absolute; right: 18px; bottom: 38px; }
+
+    /* ---------- Page 3: Group ---------- */
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat { border-radius: 14px; padding: 10px 12px; color: #fff; background: linear-gradient(135deg, #4D21B7, #7C3AED); }
+    .stat.s3 { background: var(--gradient); }
+    .stat b { display: block; font-family: var(--head); font-size: 22px; line-height: 1.05; font-weight: 800; }
+    .stat span { display: block; font-size: 10.5px; line-height: 1.3; opacity: .9; margin-top: 2px; }
+    .biz-list { display: flex; flex-direction: column; gap: 9px; }
+    .biz { display: grid; grid-template-columns: 40px 1fr; gap: 10px; align-items: center; }
+    .biz p:not(.label) { font-size: 11.5px; line-height: 1.38; }
+    .timeline {
+      list-style: none; margin: auto 0 0; padding: 0;
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; position: relative;
+    }
+    .timeline::before { content: ""; position: absolute; left: 4px; right: 4px; top: 4px; height: 2px; background: var(--lavender); }
+    .timeline li { position: relative; padding-top: 14px; }
+    .timeline li::before { content: ""; position: absolute; left: 0; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--purple); }
+    .timeline li:last-child::before { background: var(--coral); }
+    .timeline b { display: block; font-family: var(--head); font-size: 11px; color: var(--purple); }
+    .timeline span { display: block; font-size: 9.5px; line-height: 1.25; color: var(--muted); }
+
+    /* ---------- Page 4: Brands ---------- */
+    .travel { padding-right: 64px; }
+    .travel p:last-child { font-size: 11.5px; }
+    .bgroups { display: flex; flex-direction: column; gap: 9px; margin-top: 8px; }
+    .bgroup { border-top: 1px solid var(--lavender); padding-top: 8px; }
+    .bgroup h3 { font-size: 12px; color: var(--purple); }
+    .bgroup .chips { margin: 5px 0 4px; }
+    .bgroup p { font-size: 10.5px !important; line-height: 1.35 !important; }
+    .more-line { display: flex; align-items: center; gap: 6px; margin-top: 10px !important; font-size: 11px !important; font-weight: 600; color: var(--purple) !important; }
+
+    /* ---------- Page 5: Originals ---------- */
+    .orig { padding: 12px 14px; }
+    .orig-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .orig h3 { font-size: 15px; }
+    .since { font-size: 10.5px !important; }
+    .orig-facts { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .orig-facts li {
+      background: var(--lavender-2); border-radius: 10px; padding: 7px 8px;
+      font-family: var(--head); font-weight: 700; font-size: 10.5px; line-height: 1.25; color: var(--purple);
+    }
+    .works { padding-right: 64px; }
+    .works p:not(.label) { font-size: 11.5px; }
+
+    /* ---------- Page 6: Team ---------- */
+    .team-photo { width: 100%; height: 96px; object-fit: cover; border-radius: 14px; flex: none; }
+    .company { padding-top: 16px; }
+    .company p:not(.label) { font-size: 11.5px; }
+    .logo-tile {
+      position: absolute; right: 14px; top: 14px; border-radius: 10px; background: #fff;
+      padding: 6px 10px; display: grid; place-items: center;
+    }
+    .company h3 { padding-right: 95px; }
+
+    /* ---------- Page 7: Principles ---------- */
+    .lp-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+    .lp-list li {
+      display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: center;
+      background: #fff; border-radius: 12px; padding: 6px 10px 6px 8px;
+    }
+    .lp-list .i3d-badge { width: 32px; height: 32px; border-radius: 9px; }
+    .lp-list .i3d-badge svg { width: 16px; height: 16px; }
+    .lp-list h3 { font-size: 12.5px; }
+    .lp-list p { font-size: 11px !important; line-height: 1.3 !important; }
+    .p-6 .note { margin-top: auto; }
+
+    /* ---------- Page 8: Process ---------- */
+    .next { padding-right: 16px; }
+    .next .facts { grid-template-columns: 56px 1fr; font-size: 11.5px; }
+    .adjust { margin-top: 8px !important; font-size: 10.5px !important; color: var(--coral-soft) !important; line-height: 1.35 !important; }
+    .steps { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+    .step { display: flex; gap: 10px; align-items: center; }
+    .step b { display: block; font-family: var(--head); font-size: 12px; color: var(--ink); }
+    .step div > span { display: block; font-size: 10.5px; color: var(--muted); line-height: 1.3; }
+    .marker {
+      flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+      font-family: var(--head); font-weight: 800; font-size: 11px;
+      border: 2px solid var(--purple); color: var(--purple); background: #fff;
+    }
+    .step.done .marker { background: var(--purple); color: #fff; }
+    .step.now .marker { background: var(--coral); border-color: var(--coral); color: var(--indigo); }
+
+    /* ---------- Page 9: Prepare ---------- */
+    .tips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .tips li { display: grid; grid-template-columns: 34px 1fr; gap: 6px; background: #fff; border-radius: 14px; padding: 11px 12px 11px 10px; }
+    .num {
+      font-family: var(--head); font-weight: 800; font-size: 20px; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .tips h3 { margin-bottom: 3px; }
+    .tips p { font-size: 11.5px !important; line-height: 1.38 !important; }
+    .callout { margin-top: auto; }
+    .callout p:not(.label) { color: #fff !important; font-size: 12px; }
+
+    /* ---------- Page 10: Offer ---------- */
+    .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .tile { background: var(--lavender-2); border-radius: 13px; padding: 10px 10px 11px; }
+    .tile-ico {
+      width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; margin-bottom: 6px;
+      background: var(--lavender); color: var(--purple);
+    }
+    .tile-ico.warm { background: #FFE6DF; color: #D24F33; }
+    .tile h3 { font-size: 12px; margin-bottom: 2px; }
+    .tile p { font-size: 10.5px !important; line-height: 1.33 !important; }
+    .p-9 .note { margin-top: auto; }
+
+    /* ---------- Page 11: Close ---------- */
+    .close-body {
+      position: absolute; left: 24px; right: 22px; top: 214px; bottom: 22px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .close-body h2 { font-size: 23px; color: #fff; }
+    .contact-card { background: var(--indigo-2); box-shadow: none; }
+    .contact-card h3 { color: #fff; margin-bottom: 6px; }
+    .contact-card p { font-size: 11.5px; }
+    .contact { display: flex; flex-direction: column; gap: 3px; margin-bottom: 6px !important; font-size: 13px !important; color: #fff !important; }
+    .close-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+
+    /* ---------- All Companies Picker ---------- */
+    .picker {
+      width: min(920px, 100%); margin: 0 auto;
+      padding: 40px max(20px, env(safe-area-inset-right)) 56px max(20px, env(safe-area-inset-left));
+    }
+    .picker h1 { font-family: var(--head); font-weight: 800; font-size: clamp(30px, 6vw, 48px); line-height: 1.05; margin: 0 0 12px; }
+    .picker p { font-size: 16px; color: var(--muted-dark); margin: 0 0 8px; }
+    .pick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 28px 0; }
+    .pick {
+      display: block; width: 100%; padding: 0; text-align: left; cursor: pointer; color: inherit;
+      background: var(--indigo-2); border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .14); transition: transform .2s, border-color .2s;
+    }
+    .pick:hover { transform: translateY(-4px); border-color: var(--coral); }
+    .pick img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .pick-body { padding: 16px; }
+    .pick-body span { display: block; font-family: var(--head); font-weight: 800; font-size: 20px; margin-bottom: 4px; }
+    .pick-body small { display: block; font-size: 13px; color: var(--muted-dark); }
+
+    @media (max-width: 600px) {
+      .topbar { font-size: 12px; }
+      .stage { padding: 10px 12px 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .page { transition: opacity .3s ease; }
+      .page.flipped { transform: none; opacity: 0; }
+      .front::after { display: none; }
+    }
+    @media print {
+      @page { size: 360px 640px; margin: 0; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      html, body { height: auto; overflow: visible; display: block; background: #fff; }
+      .topbar, .controls, .hint { display: none !important; }
+      .stage { display: block; padding: 0; }
+      .book { width: 360px !important; height: auto !important; --s: 1 !important; }
+      .book::before, .book::after { display: none; }
+      .pages { position: static; perspective: none; }
+      .page {
+        position: relative; inset: auto; width: 360px; height: 640px;
+        transform: none !important; visibility: visible !important; opacity: 1 !important;
+        break-after: page; page-break-after: always;
+      }
+      .page:last-child { break-after: auto; page-break-after: auto; }
+      .face { box-shadow: none; border-radius: 0; }
+      .back, .front::after, .front::before { display: none; }
+    }
   </style>
 </head>
 <body>
-
-  <header class="topbar">
-    <span class="brand-title">
-      <span>HomeToGo Group</span>
-      <span class="muted" id="brandLabel">HomeToGo</span>
-    </span>
-    <span class="topbar-right">
-      <select class="company-select" id="companySwitch" aria-label="Select company">
-        <option value="hometogo">HomeToGo</option>
-        <option value="interhome">Interhome</option>
-        <option value="smoobu">Smoobu</option>
-      </select>
-      <span class="counter" id="counter">1 / 11</span>
-    </span>
-  </header>
-
-  <main class="stage">
-    <div class="book" id="book">
-      <!-- Page 1: Cover -->
-      <section class="page tone-dark active" data-index="0">
-        <div>
-          <span class="brand-title" id="coverLogo">HomeToGo</span>
-        </div>
-        <div class="cover-body">
-          <p class="eyebrow on-dark" id="coverEyebrow">Candidate pack · HomeToGo</p>
-          <h1>You’re through to the next round.</h1>
-          <p class="lead">Everything you need for your conversation with the hiring manager, in one place.</p>
-          <span class="grad-bar"></span>
-          <span class="hint">Use arrows or swipe to turn the page →</span>
-        </div>
-      </section>
-
-      <!-- Page 2: Recruiter Note -->
-      <section class="page tone-light" data-index="1">
-        <header class="pg-head">
-          <p class="eyebrow">A note from your recruiter</p>
-          <h2>Hello there,</h2>
-        </header>
-        <p style="margin-bottom:14px;line-height:1.6;font-size:0.95rem;">Thank you for your time in our first conversation. We enjoyed it, and we’d like you to meet the hiring manager, who leads the team you’d join.</p>
-        <p style="margin-bottom:22px;line-height:1.6;font-size:0.95rem;">This pack covers who we are, how the next steps work and what helps people do well. None of it is a test. Skim what you know, and send me any question that comes up.</p>
-        <div class="card">
-          <p class="label">Your contact</p>
-          <h3>Talent Acquisition Team</h3>
-          <p id="recruiterOrg">Talent Acquisition, HomeToGo Group</p>
-        </div>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>2</span></footer>
-      </section>
-
-      <!-- Page 3: Three Businesses -->
-      <section class="page tone-light" data-index="2">
-        <header class="pg-head">
-          <p class="eyebrow">Who we are · HomeToGo Group</p>
-          <h2>Three businesses, one group</h2>
-        </header>
-        <div class="stats">
-          <div class="stat"><b>15M+</b><span>travelers a year</span></div>
-          <div class="stat"><b>30+</b><span>countries with local apps & sites</span></div>
-          <div class="stat"><b>1,500+</b><span>colleagues across Europe</span></div>
-          <div class="stat"><b>2021</b><span>listed on Frankfurt Stock Exchange</span></div>
-        </div>
-        <div class="card">
-          <p class="label">Marketplace</p>
-          <h3>HomeToGo</h3>
-          <p>Apps and websites in 30+ countries where travelers search and book their stay.</p>
-        </div>
-        <div class="card">
-          <p class="label">Software</p>
-          <h3>Smoobu and SECRA</h3>
-          <p>Tools that help hosts, agencies and tourism regions run their rentals.</p>
-        </div>
-        <div class="card">
-          <p class="label">Services</p>
-          <h3>Interhome and more</h3>
-          <p>Property management and on-site services. Interhome looks after 70,000+ homes.</p>
-        </div>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>3</span></footer>
-      </section>
-
-      <!-- Page 4: Ecosystem -->
-      <section class="page tone-lav" data-index="3">
-        <header class="pg-head">
-          <p class="eyebrow">Who we are · Our brands</p>
-          <h2>How the Group fits together</h2>
-        </header>
-        <div class="card dark">
-          <p class="label">For travelers</p>
-          <h3>Marketplace</h3>
-          <div class="chips">
-            <span class="chip on-dark">HomeToGo</span>
-            <span class="chip on-dark">GetAway Group</span>
-          </div>
-          <p>Search and book stays in 30+ countries, plus short breaks through Kurz Mal Weg and Kurzurlaub.</p>
-        </div>
-        <div class="card">
-          <p class="label">For hosts and partners</p>
-          <h3>HomeToGo_PRO · Software</h3>
-          <div class="chips">
-            <span class="chip">Smoobu</span>
-            <span class="chip">SECRA</span>
-            <span class="chip">Doppelgänger</span>
-          </div>
-          <p>All-in-one vacation rental software for independent hosts, agencies, and tourism regions.</p>
-        </div>
-        <div class="card">
-          <p class="label">Host services</p>
-          <div class="chips">
-            <span class="chip">my.HomeToGo</span>
-            <span class="chip">CaseVacanza.it</span>
-            <span class="chip">EscapadaRural</span>
-            <span class="chip">amivac</span>
-          </div>
-          <p>Listing plans on HomeToGo, plus leading regional sites in Italy, Spain and France.</p>
-        </div>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>4</span></footer>
-      </section>
-
-      <!-- Page 5: Homes we look after -->
-      <section class="page tone-light" data-index="4">
-        <header class="pg-head">
-          <p class="eyebrow">Who we are · HomeToGo Originals</p>
-          <h2>Homes we look after</h2>
-        </header>
-        <p style="font-size:0.88rem;color:var(--ink-muted);margin-bottom:14px;">Our property management companies care for holiday homes on behalf of their owners, from the first booking to the last clean.</p>
-        <div class="card">
-          <p class="label">Since 1965 · Zurich</p>
-          <h3>Interhome</h3>
-          <p>70,000+ homes · 20+ countries · 120+ local service offices</p>
-        </div>
-        <div class="card">
-          <p class="label">Since 1974 · Baltic coast</p>
-          <h3>Kraushaar</h3>
-          <p>About 1,700 homes · 9 locations in Germany</p>
-        </div>
-        <div class="card dark">
-          <p class="label">HomeToGo Works</p>
-          <h3>timwork</h3>
-          <p>Cleaning, laundry and upkeep for holiday homes on the Baltic coast.</p>
-        </div>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>5</span></footer>
-      </section>
-
-      <!-- Page 6: Dynamic Company & Team -->
-      <section class="page tone-light" data-index="5">
-        <header class="pg-head">
-          <p class="eyebrow" id="p6Eyebrow">Where you’d work · HomeToGo</p>
-          <h2>Your company and your team</h2>
-        </header>
-        <div class="card dark">
-          <p class="label">The company</p>
-          <h3 id="p6Title">HomeToGo, Berlin</h3>
-          <p id="p6Desc">Home to the Group’s marketplace and many central teams, from Product and Engineering to Finance and People.</p>
-          <dl class="facts">
-            <dt>Hub</dt><dd id="p6Office">Berlin</dd>
-            <dt>Language</dt><dd id="p6Lang">English</dd>
-          </dl>
-        </div>
-        <div class="card">
-          <p class="label">Your future team</p>
-          <p>Your recruiter will tell you who you’ll meet and why the role is open.</p>
-        </div>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>6</span></footer>
-      </section>
-
-      <!-- Page 7: 8 Leadership Principles -->
-      <section class="page tone-lav" data-index="6">
-        <header class="pg-head">
-          <p class="eyebrow">How we work · Every Group company</p>
-          <h2>Our eight leadership principles</h2>
-        </header>
-        <ul class="lp-list">
-          <li><span class="lp-num">01</span><div><h3>Make Customers Successful</h3><p>Start with what travelers and hosts need.</p></div></li>
-          <li><span class="lp-num">02</span><div><h3>Bias for Results</h3><p>Focus on outcomes and measure what changed.</p></div></li>
-          <li><span class="lp-num">03</span><div><h3>Always be Responsible</h3><p>Own your work, decisions and their impact.</p></div></li>
-          <li><span class="lp-num">04</span><div><h3>Act Entrepreneurial</h3><p>Spot opportunities and act like an owner.</p></div></li>
-          <li><span class="lp-num">05</span><div><h3>Embrace Change, Reduce Complexity</h3><p>Adapt quickly and keep things simple.</p></div></li>
-          <li><span class="lp-num">06</span><div><h3>Hire and Develop the Best</h3><p>Raise the bar and help people grow.</p></div></li>
-          <li><span class="lp-num">07</span><div><h3>Enable Each Other to Succeed</h3><p>Share what you know and help others win.</p></div></li>
-          <li><span class="lp-num">08</span><div><h3>Lead with AI</h3><p>Use AI every day and stay curious about it.</p></div></li>
-        </ul>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>7</span></footer>
-      </section>
-
-      <!-- Page 8: Interview Journey -->
-      <section class="page tone-light" data-index="7">
-        <header class="pg-head">
-          <p class="eyebrow">What happens next</p>
-          <h2>Your interview journey</h2>
-        </header>
-        <div class="card dark">
-          <p class="label">Up next</p>
-          <h3>Hiring manager interview</h3>
-          <p>Focus: Your experience, how you’d tackle the role and your questions. Need extra time or support? Tell your recruiter—it won’t count against you.</p>
-        </div>
-        <ol class="steps">
-          <li class="step done"><span class="marker">✓</span><div><b>Recruiter conversation</b><span>Done. Thanks for your time.</span></div></li>
-          <li class="step now"><span class="marker">2</span><div><b>Hiring manager interview</b><span>You are here.</span></div></li>
-          <li class="step"><span class="marker">3</span><div><b>Skills round</b><span>A case study or task, briefed in advance.</span></div></li>
-          <li class="step"><span class="marker">4</span><div><b>Team conversations</b><span>Meet future peers and close partners.</span></div></li>
-          <li class="step"><span class="marker">5</span><div><b>Bar Raiser (senior roles)</b><span>A values conversation outside the team.</span></div></li>
-          <li class="step"><span class="marker">6</span><div><b>Decision</b><span>Your recruiter will share the timeline.</span></div></li>
-        </ol>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>8</span></footer>
-      </section>
-
-      <!-- Page 9: Four things that help -->
-      <section class="page tone-lav" data-index="8">
-        <header class="pg-head">
-          <p class="eyebrow">How to prepare</p>
-          <h2>Four things that help</h2>
-        </header>
-        <div class="card">
-          <p class="label">01</p>
-          <h3>Revisit the role</h3>
-          <p>Re-read the job ad. Pick the two or three outcomes that matter most and how you’d tackle them.</p>
-        </div>
-        <div class="card">
-          <p class="label">02</p>
-          <h3>Bring real examples</h3>
-          <p>A few stories from your work: the situation, what you did, what changed. Specific beats polished.</p>
-        </div>
-        <div class="card">
-          <p class="label">03</p>
-          <h3>Try what we build</h3>
-          <p id="p9Try">Plan a trip on HomeToGo or browse the app. Note one thing you liked and one you’d change.</p>
-        </div>
-        <div class="card">
-          <p class="label">04</p>
-          <h3>Bring your questions</h3>
-          <p>The interview runs both ways. Ask about the team, the work and how success is measured.</p>
-        </div>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>9</span></footer>
-      </section>
-
-      <!-- Page 10: Dynamic Life & Benefits -->
-      <section class="page tone-light" data-index="9">
-        <header class="pg-head">
-          <p class="eyebrow" id="p10Eyebrow">What we offer · HomeToGo</p>
-          <h2 id="p10Title">Life at HomeToGo</h2>
-        </header>
-        <div class="tiles" id="p10Tiles"></div>
-        <p style="font-size:0.76rem;color:var(--ink-muted);margin-top:12px;">Plus travel discounts across Group properties. Specific benefits depend on location, role, and contract.</p>
-        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>10</span></footer>
-      </section>
-
-      <!-- Page 11: Closing -->
-      <section class="page tone-dark" data-index="10">
-        <div>
-          <span class="brand-title" id="closeLogo">HomeToGo</span>
-        </div>
-        <div class="cover-body">
-          <p class="eyebrow on-dark">Before you go</p>
-          <h2>Good luck. We’re looking forward to meeting you.</h2>
-          <div class="card" style="color:var(--ink);margin:20px 0;">
-            <h3>Questions before your interview?</h3>
-            <p style="font-weight:700;margin-bottom:4px;">Reply to your recruiter’s last email.</p>
-            <p>Nothing is too small to ask: logistics, the format, or who you’ll meet.</p>
-          </div>
-          <span class="grad-bar"></span>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <nav class="controls" aria-label="Pages">
-    <button class="nav-btn" id="prev" aria-label="Previous page">‹</button>
-    <div class="dots" id="dots"></div>
-    <button class="nav-btn" id="next" aria-label="Next page">›</button>
-  </nav>
+  <div id="app"></div>
 
   <script>
+    const LOGOS = {
+      hometogo: {
+        white: `<svg height="28" viewBox="0 0 165 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#fff"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#4D21B7"/><text x="36" y="22" fill="#fff" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="19">HomeToGo</text></svg>`,
+        dark: `<svg height="20" viewBox="0 0 155 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#4D21B7"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#fff"/><text x="35" y="22" fill="#1E1B4B" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="18">HomeToGo</text></svg>`
+      },
+      interhome: {
+        white: `<svg height="28" viewBox="0 0 165 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#fff"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#005596"/><text x="36" y="22" fill="#fff" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="19">Interhome</text></svg>`,
+        dark: `<svg height="20" viewBox="0 0 155 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#005596"/><path d="M7 16.5L14 10.5L21 16.5V22.5H16V18H12V22.5H7V16.5Z" fill="#fff"/><text x="35" y="22" fill="#005596" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="18">Interhome</text></svg>`
+      },
+      smoobu: {
+        white: `<svg height="28" viewBox="0 0 155 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#fff"/><circle cx="14" cy="16" r="6.5" stroke="#00877A" stroke-width="3"/><text x="36" y="22" fill="#fff" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="19">Smoobu</text></svg>`,
+        dark: `<svg height="20" viewBox="0 0 145 32" fill="none"><rect width="28" height="28" rx="7" y="2" fill="#00877A"/><circle cx="14" cy="16" r="6.5" stroke="#fff" stroke-width="3"/><text x="35" y="22" fill="#00877A" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="18">Smoobu</text></svg>`
+      }
+    };
+
+    const ICONS = {
+      suitcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
+      blocks: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
+      house: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></svg>`,
+      hearts: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-4.35-9.33-8.28C.6 9.2 2.9 5 6.8 5c2.2 0 3.9 1.2 5.2 2.8C13.3 6.2 15 5 17.2 5c3.9 0 6.2 4.2 4.13 7.72C19 16.65 12 21 12 21z"/></svg>`,
+      flag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`,
+      donut: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>`,
+      badge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+      rocket: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>`,
+      plant: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20v-8m0 0c-3 0-6-2-6-6 3 0 6 2 6 6zm0 0c3 0 6-2 6-6-3 0-6 2-6 6z"/></svg>`,
+      robot: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg>`
+    };
+
     const COMPANIES = {
       hometogo: {
         name: "HomeToGo",
-        color: "#4D21B5",
+        tagline: "B2C Marketplace & Central Tech · Berlin",
+        coverImg: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80",
         p6Title: "HomeToGo, Berlin",
         p6Desc: "Home to the Group’s marketplace and many central teams, from Product and Engineering to Finance and People.",
-        p6Office: "Berlin & Hybrid",
+        p6Office: "Berlin",
         p6Lang: "English",
         p9Try: "Plan a trip on HomeToGo or browse the app. Note one thing you liked and one you’d change.",
+        offerTitle: "Life at HomeToGo",
         tiles: [
           { h: "Flexible hybrid", p: "Up to 50% remote, with up to 63 days abroad in the EU and UK." },
-          { h: "Time off", p: "27 vacation days to start, rising with tenure to 32." },
+          { h: "Time off", p: "27 vacation days to start, rising with tenure to 32.", warm: true },
           { h: "Pay and equity", p: "Market-aligned salary, plus stock options for eligible roles." },
           { h: "AI tools", p: "Google Workspace, Slack AI, Claude, Copilot and our own agents." },
-          { h: "Learning", p: "German classes, masterclasses and cross-team mentoring." },
-          { h: "Wellbeing", p: "Mental health support and subsidized sports memberships." },
+          { h: "Learning", p: "German classes, masterclasses and cross-team mentoring.", warm: true },
+          { h: "Wellbeing", p: "Mental health support and subsidized sports memberships.", warm: true },
           { h: "Getting around", p: "Deutschland-Ticket subsidy and bike leasing." },
-          { h: "Relocation", p: "Visa sponsorship and relocation support for international hires." }
+          { h: "Moving to Berlin", p: "Visa sponsorship and relocation support for international hires.", warm: true }
         ]
       },
       interhome: {
         name: "Interhome",
-        color: "#005596",
-        p6Title: "Interhome, Zurich & Local Hubs",
-        p6Desc: "Europe’s leading full-service holiday home specialist with 60+ years of hospitality heritage across 120+ local destination offices.",
-        p6Office: "Glattbrugg (Zurich) & Destinations",
+        tagline: "Full-Service Holiday Homes · Zurich & 120+ Hubs",
+        coverImg: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=800&q=80",
+        p6Title: "Interhome, Zurich & Hubs",
+        p6Desc: "Europe’s leading holiday home specialist with 60+ years of heritage, caring for 70,000+ homes across 20+ countries.",
+        p6Office: "Glattbrugg (Zurich) & Local",
         p6Lang: "English, German & Local",
-        p9Try: "Browse Interhome.com and explore how owners and guests experience full-service holiday homes.",
+        p9Try: "Browse Interhome.com and explore how guests and homeowners experience full-service stays.",
+        offerTitle: "Life at Interhome",
         tiles: [
-          { h: "Hybrid & local", p: "Flexible hybrid setup in HQ paired with hands-on destination teams." },
-          { h: "Holiday perks", p: "Generous employee discounts on 70,000+ Interhome properties." },
-          { h: "Swiss & EU standards", p: "Competitive compensation, pension plans, and social benefits." },
+          { h: "Hybrid & local", p: "Flexible hybrid work at HQ paired with local destination teams." },
+          { h: "Holiday perks", p: "Generous employee discounts on 70,000+ Interhome properties.", warm: true },
+          { h: "Swiss & EU package", p: "Competitive pay, strong pension plans, and social benefits." },
           { h: "AI & digital tools", p: "Modern cloud workspace and Group-wide AI productivity tools." },
-          { h: "Cross-Group mobility", p: "Career pathways across Interhome, HomeToGo, and Smoobu." },
-          { h: "Learning & growth", p: "Language courses, hospitality training, and leadership programs." },
+          { h: "Group mobility", p: "Career pathways across Interhome, HomeToGo, and Smoobu.", warm: true },
+          { h: "Learning & growth", p: "Language courses, hospitality training, and leadership programs.", warm: true },
           { h: "Commuter support", p: "Public transport subsidies and modern office facilities." },
-          { h: "International culture", p: "Collaborate across 20+ European countries every day." }
+          { h: "European network", p: "Collaborate daily with colleagues across 120+ local offices.", warm: true }
         ]
       },
       smoobu: {
         name: "Smoobu",
-        color: "#00877A",
+        tagline: "All-in-One Vacation Rental SaaS · Berlin",
+        coverImg: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
         p6Title: "Smoobu, Berlin",
-        p6Desc: "The all-in-one vacation rental SaaS empowering independent hosts and property managers to automate bookings and sync channels.",
+        p6Desc: "The all-in-one vacation rental software empowering independent hosts and agencies to synchronize calendars and scale direct bookings.",
         p6Office: "Berlin & Hybrid",
-        p6Lang: "English (plus multi-market)",
+        p6Lang: "English (multi-market)",
         p9Try: "Explore Smoobu.com or test a free trial to see how hosts manage calendars and direct bookings.",
+        offerTitle: "Life at Smoobu",
         tiles: [
-          { h: "SaaS agility", p: "Fast-moving product & customer teams with high individual ownership." },
-          { h: "Flexible hybrid", p: "Hybrid work from our Berlin hub plus workation options abroad." },
+          { h: "SaaS agility", p: "Fast-moving product & customer teams with high ownership." },
+          { h: "Flexible hybrid", p: "Hybrid work from our Berlin hub plus workation options abroad.", warm: true },
           { h: "Time off", p: "Generous annual vacation allowance growing with your tenure." },
           { h: "AI-first workflow", p: "Full access to modern AI coding, support, and productivity tools." },
-          { h: "Learning budget", p: "Dedicated resources for SaaS conferences, courses, and languages." },
-          { h: "Wellbeing", p: "Subsidized sports memberships and mental health resources." },
+          { h: "Learning budget", p: "Dedicated resources for SaaS conferences, courses, and languages.", warm: true },
+          { h: "Wellbeing", p: "Subsidized sports memberships and mental health resources.", warm: true },
           { h: "Getting around", p: "Deutschland-Ticket subsidy and bike leasing options." },
-          { h: "Travel discounts", p: "Exclusive employee stay discounts across HomeToGo Group." }
+          { h: "Travel discounts", p: "Exclusive employee stay discounts across HomeToGo Group.", warm: true }
         ]
       }
     };
 
-    const pages = Array.from(document.querySelectorAll('.page'));
-    const dotsWrap = document.getElementById('dots');
-    const counter = document.getElementById('counter');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const companySwitch = document.getElementById('companySwitch');
+    const app = document.getElementById("app");
     let current = 0;
+    let pageEls = [];
 
-    // Build dots
-    pages.forEach((_, idx) => {
-      const d = document.createElement('button');
-      d.className = 'dot' + (idx === 0 ? ' on' : '');
-      d.setAttribute('aria-label', `Go to page ${idx + 1}`);
-      d.onclick = () => goTo(idx);
-      dotsWrap.appendChild(d);
-    });
-
-    function goTo(idx) {
-      current = Math.max(0, Math.min(pages.length - 1, idx));
-      pages.forEach((p, i) => p.classList.toggle('active', i === current));
-      Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('on', i === current));
-      counter.textContent = `${current + 1} / ${pages.length}`;
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === pages.length - 1;
+    function renderPicker() {
+      document.body.classList.add("is-picker");
+      document.title = "Candidate pack · HomeToGo Group";
+      app.innerHTML = `
+        <div class="picker">
+          <div style="margin-bottom:26px;">${LOGOS.hometogo.white}</div>
+          <p class="eyebrow on-dark">HomeToGo Group · Candidate Pack</p>
+          <h1>Choose your company</h1>
+          <p>Select the company you’re interviewing with to open your tailored candidate booklet.</p>
+          <div class="pick-grid">
+            ${Object.entries(COMPANIES).map(([key, c]) => `
+              <button class="pick" data-pick="${key}">
+                <img src="${c.coverImg}" alt="${c.name}" />
+                <div class="pick-body">
+                  <span>${c.name}</span>
+                  <small>${c.tagline}</small>
+                </div>
+              </button>
+            `).join("")}
+          </div>
+          <p class="picker-note">Tip: You can link directly to any company using <code>#hometogo</code>, <code>#interhome</code>, or <code>#smoobu</code>.</p>
+        </div>
+      `;
+      app.querySelectorAll("[data-pick]").forEach(btn => {
+        btn.onclick = () => {
+          const key = btn.dataset.pick;
+          history.replaceState(null, "", `#${key}`);
+          renderBook(key);
+        };
+      });
     }
 
-    function applyCompany(key) {
-      const c = COMPANIES[key] || COMPANIES.hometogo;
-      document.documentElement.style.setProperty('--brand-color', c.color);
-      document.title = `Candidate Pack · ${c.name}`;
-      document.getElementById('brandLabel').textContent = c.name;
-      document.getElementById('coverLogo').textContent = c.name;
-      document.getElementById('closeLogo').textContent = c.name;
-      document.getElementById('coverEyebrow').textContent = `Candidate pack · ${c.name}`;
-      document.getElementById('p6Eyebrow').textContent = `Where you’d work · ${c.name}`;
-      document.getElementById('p6Title').textContent = c.p6Title;
-      document.getElementById('p6Desc').textContent = c.p6Desc;
-      document.getElementById('p6Office').textContent = c.p6Office;
-      document.getElementById('p6Lang').textContent = c.p6Lang;
-      document.getElementById('p9Try').textContent = c.p9Try;
-      document.getElementById('p10Eyebrow').textContent = `What we offer · ${c.name}`;
-      document.getElementById('p10Title').textContent = `Life at ${c.name}`;
+    function buildPages(c, key) {
+      const logoWhite = LOGOS[key].white;
+      const logoDark = LOGOS[key].dark;
 
-      document.querySelectorAll('.folio-brand').forEach(el => {
-        el.textContent = `HomeToGo Group · ${c.name}`;
+      return [
+        // 1 Cover
+        `<div class="pg tone-dark p-0">
+          <img class="cover-img" src="${c.coverImg}" alt="" />
+          <div class="cover-shade"></div>
+          <div class="logo-white">${logoWhite}</div>
+          <div class="cover-body">
+            <p class="eyebrow on-dark">Candidate pack · ${c.name}</p>
+            <h1>You’re through to the next round.</h1>
+            <p class="lead">Everything you need for your conversation with the hiring manager, in one place.</p>
+            <div class="cover-foot">
+              <span class="grad-bar"></span>
+              <span class="hint">Swipe to turn the page →</span>
+            </div>
+          </div>
+        </div>`,
+
+        // 2 Welcome
+        `<div class="pg tone-light p-1">
+          <img class="band" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="" />
+          <div class="welcome-body">
+            <p class="eyebrow">A note from your recruiter</p>
+            <h2>Hello there,</h2>
+            <p>Thank you for your time in our first conversation. We enjoyed it, and we’d like you to meet the hiring manager, who leads the team you’d join.</p>
+            <p>This pack covers who we are, how the next steps work and what helps people do well. None of it is a test. Skim what you know, and send me any question that comes up.</p>
+            <div class="signature">
+              <span class="avatar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2 .7 3.5 2.6 3.5 6"/></svg></span>
+              <span><b>Your recruiter</b><small>Talent Acquisition, HomeToGo Group</small></span>
+            </div>
+          </div>
+          <span class="i3d-badge b-coral welcome-deco">${ICONS.hearts}</span>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>2</span></footer>
+        </div>`,
+
+        // 3 Group
+        `<div class="pg tone-light p-2">
+          <header class="pg-head">
+            <p class="eyebrow">Who we are · HomeToGo Group</p>
+            <h2>Three businesses, one group</h2>
+          </header>
+          <div class="stats">
+            <div class="stat"><b>15M+</b><span>travelers a year</span></div>
+            <div class="stat"><b>30+</b><span>countries with local apps and sites</span></div>
+            <div class="stat"><b>1,500+</b><span>colleagues across Europe</span></div>
+            <div class="stat s3"><b>2021</b><span>listed on the Frankfurt Stock Exchange</span></div>
+          </div>
+          <div class="biz-list">
+            <div class="biz"><span class="i3d-badge b-purple">${ICONS.suitcase}</span><div><p class="label">Marketplace</p><h3>HomeToGo</h3><p>Apps and websites in 30+ countries where travelers search and book their stay.</p></div></div>
+            <div class="biz"><span class="i3d-badge b-teal">${ICONS.blocks}</span><div><p class="label">Software</p><h3>Smoobu and SECRA</h3><p>Tools that help hosts, agencies and tourism regions run their rentals.</p></div></div>
+            <div class="biz"><span class="i3d-badge b-blue">${ICONS.house}</span><div><p class="label">Services</p><h3>Interhome and more</h3><p>Property management and on-site services. Interhome looks after 70,000+ homes.</p></div></div>
+          </div>
+          <ol class="timeline">
+            <li><b>2014</b><span>Founded in Berlin</span></li>
+            <li><b>2021</b><span>Listed in Frankfurt</span></li>
+            <li><b>2021–22</b><span>Smoobu & SECRA</span></li>
+            <li><b>2025</b><span>Interhome joins</span></li>
+            <li><b>2026</b><span>HTG Originals</span></li>
+          </ol>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>3</span></footer>
+        </div>`,
+
+        // 4 Brands
+        `<div class="pg tone-lav p-3">
+          <header class="pg-head">
+            <p class="eyebrow">Who we are · Our brands</p>
+            <h2>How the Group fits together</h2>
+          </header>
+          <section class="card dark travel">
+            <span class="i3d-badge b-purple card-deco">${ICONS.suitcase}</span>
+            <p class="label">For travelers</p>
+            <h3>Marketplace</h3>
+            <div class="chips"><span class="chip on-dark">HomeToGo</span><span class="chip on-dark">GetAway Group</span></div>
+            <p>Search and book stays in 30+ countries, plus short breaks through Kurz Mal Weg and Kurzurlaub.</p>
+          </section>
+          <section class="card hosts">
+            <span class="i3d-badge b-teal card-deco">${ICONS.house}</span>
+            <p class="label">For hosts and partners</p>
+            <h3>HomeToGo_PRO</h3>
+            <div class="bgroups">
+              <div class="bgroup">
+                <h3>Software</h3>
+                <div class="chips"><span class="chip">Smoobu</span><span class="chip">SECRA</span><span class="chip">Doppelgänger</span></div>
+                <p>Tools for independent hosts, agencies, regions and travel agencies</p>
+              </div>
+              <div class="bgroup">
+                <h3>Host services</h3>
+                <div class="chips"><span class="chip">my.HomeToGo</span><span class="chip">CaseVacanza.it</span><span class="chip">EscapadaRural</span><span class="chip">amivac</span></div>
+                <p>Listing plans on HomeToGo, plus listing sites in Italy, Spain and France</p>
+              </div>
+            </div>
+            <p class="more-line">HomeToGo Originals and HomeToGo Works are on the next page →</p>
+          </section>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>4</span></footer>
+        </div>`,
+
+        // 5 Originals
+        `<div class="pg tone-light p-4">
+          <header class="pg-head">
+            <p class="eyebrow">Who we are · HomeToGo Originals</p>
+            <h2>Homes we look after</h2>
+          </header>
+          <p style="font-size:12px;">Our property management companies care for holiday homes on behalf of their owners, from the first booking to the last clean.</p>
+          <section class="card orig">
+            <div class="orig-head">
+              <span class="i3d-badge b-blue">${ICONS.house}</span>
+              <div><h3>Interhome</h3><p class="since">Since 1965 · Zurich</p></div>
+            </div>
+            <ul class="orig-facts"><li>70,000+ homes</li><li>20+ countries</li><li>120+ local offices</li></ul>
+          </section>
+          <section class="card orig">
+            <div class="orig-head">
+              <span class="i3d-badge b-purple">${ICONS.house}</span>
+              <div><h3>Kraushaar</h3><p class="since">Since 1974 · Baltic coast</p></div>
+            </div>
+            <ul class="orig-facts"><li>About 1,700 homes</li><li>9 locations</li><li>Germany</li></ul>
+          </section>
+          <section class="card dark works">
+            <span class="i3d-badge b-teal card-deco" style="top:14px;">${ICONS.blocks}</span>
+            <p class="label">HomeToGo Works</p>
+            <h3>timwork</h3>
+            <p>Cleaning, laundry and upkeep for holiday homes on the Baltic coast.</p>
+          </section>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>5</span></footer>
+        </div>`,
+
+        // 6 Company & Team
+        `<div class="pg tone-light p-5">
+          <header class="pg-head">
+            <p class="eyebrow">Where you’d work · ${c.name}</p>
+            <h2>Your company and your team</h2>
+          </header>
+          <img class="team-photo" src="${c.coverImg}" alt="" />
+          <section class="card dark company">
+            <span class="logo-tile">${logoDark}</span>
+            <p class="label">The company</p>
+            <h3>${c.p6Title}</h3>
+            <p>${c.p6Desc}</p>
+            <dl class="facts on-dark"><dt>Office</dt><dd>${c.p6Office}</dd><dt>Language</dt><dd>${c.p6Lang}</dd></dl>
+          </section>
+          <section class="card team">
+            <p class="label">Your future team</p>
+            <p>Your recruiter will tell you who you’ll meet and why the role is open.</p>
+          </section>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>6</span></footer>
+        </div>`,
+
+        // 7 Leadership Principles
+        `<div class="pg tone-lav p-6">
+          <header class="pg-head">
+            <p class="eyebrow">How we work · Every Group company</p>
+            <h2>Our eight leadership principles</h2>
+          </header>
+          <ul class="lp-list">
+            <li><span class="i3d-badge b-coral">${ICONS.flag}</span><div><h3>Make Customers Successful</h3><p>Start with what travelers and hosts need.</p></div></li>
+            <li><span class="i3d-badge b-purple">${ICONS.donut}</span><div><h3>Bias for Results</h3><p>Focus on outcomes and measure what changed.</p></div></li>
+            <li><span class="i3d-badge b-blue">${ICONS.badge}</span><div><h3>Always be Responsible</h3><p>Own your work, decisions and their impact.</p></div></li>
+            <li><span class="i3d-badge b-amber">${ICONS.rocket}</span><div><h3>Act Entrepreneurial</h3><p>Spot opportunities and act like an owner.</p></div></li>
+            <li><span class="i3d-badge b-teal">${ICONS.blocks}</span><div><h3>Embrace Change, Reduce Complexity</h3><p>Adapt quickly and keep things simple.</p></div></li>
+            <li><span class="i3d-badge b-teal">${ICONS.plant}</span><div><h3>Hire and Develop the Best</h3><p>Raise the bar and help people grow.</p></div></li>
+            <li><span class="i3d-badge b-coral">${ICONS.hearts}</span><div><h3>Enable Each Other to Succeed</h3><p>Share what you know and help others win.</p></div></li>
+            <li><span class="i3d-badge b-purple">${ICONS.robot}</span><div><h3>Lead with AI</h3><p>Use AI every day and stay curious about it.</p></div></li>
+          </ul>
+          <p class="note">We ask about real situations that show some of these. No need to memorize them: think of examples.</p>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>7</span></footer>
+        </div>`,
+
+        // 8 Interview Journey
+        `<div class="pg tone-light p-7">
+          <header class="pg-head">
+            <p class="eyebrow">What happens next</p>
+            <h2>Your interview journey</h2>
+          </header>
+          <section class="card dark next">
+            <span class="i3d-badge b-coral card-deco">${ICONS.flag}</span>
+            <p class="pill small-pill">Up next</p>
+            <h3>Hiring manager interview</h3>
+            <dl class="facts on-dark">
+              <dt>With</dt><dd>In your invitation</dd>
+              <dt>Length</dt><dd>In your invitation</dd>
+              <dt>Focus</dt><dd>Your experience, how you’d tackle the role and your questions.</dd>
+            </dl>
+            <p class="adjust">Need extra time, a different format or other support? Tell your recruiter. It won’t count against you.</p>
+          </section>
+          <ol class="steps">
+            <li class="step done"><span class="marker">✓</span><div><b>Recruiter conversation</b><span>Done. Thanks for your time.</span></div></li>
+            <li class="step now"><span class="marker">2</span><div><b>Hiring manager interview</b><span>You are here.</span></div></li>
+            <li class="step"><span class="marker">3</span><div><b>Skills round</b><span>A case study or task, briefed in advance.</span></div></li>
+            <li class="step"><span class="marker">4</span><div><b>Team conversations</b><span>Meet future peers and close partners.</span></div></li>
+            <li class="step"><span class="marker">5</span><div><b>Bar Raiser (senior roles)</b><span>A values conversation outside the team.</span></div></li>
+            <li class="step"><span class="marker">6</span><div><b>Decision</b><span>Your recruiter will share the timeline.</span></div></li>
+          </ol>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>8</span></footer>
+        </div>`,
+
+        // 9 Four things that help
+        `<div class="pg tone-lav p-8">
+          <header class="pg-head">
+            <span class="i3d-badge b-amber head-deco">${ICONS.rocket}</span>
+            <p class="eyebrow">How to prepare</p>
+            <h2>Four things that help</h2>
+          </header>
+          <ol class="tips">
+            <li><span class="num">01</span><div><h3>Revisit the role</h3><p>Re-read the job ad. Pick the two or three outcomes that matter most and how you’d tackle them.</p></div></li>
+            <li><span class="num">02</span><div><h3>Bring real examples</h3><p>A few stories from your work: the situation, what you did, what changed. Specific beats polished.</p></div></li>
+            <li><span class="num">03</span><div><h3>Try what we build</h3><p>${c.p9Try}</p></div></li>
+            <li><span class="num">04</span><div><h3>Bring your questions</h3><p>The interview runs both ways. Ask about the team, the work and how success is measured.</p></div></li>
+          </ol>
+          <section class="card dark callout">
+            <p class="label">What we don’t expect</p>
+            <p>Memorized figures, insider jargon or perfect answers. If you need a moment to think, take it.</p>
+          </section>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>9</span></footer>
+        </div>`,
+
+        // 10 Offer
+        `<div class="pg tone-light p-9">
+          <header class="pg-head">
+            <span class="i3d-badge b-teal head-deco">${ICONS.plant}</span>
+            <p class="eyebrow">What we offer · ${c.name}</p>
+            <h2>${c.offerTitle}</h2>
+          </header>
+          <div class="tiles">
+            ${c.tiles.map(t => `
+              <div class="tile">
+                <span class="tile-ico ${t.warm ? "warm" : ""}">✦</span>
+                <h3>${t.h}</h3>
+                <p>${t.p}</p>
+              </div>
+            `).join("")}
+          </div>
+          <p class="note">Plus dog-friendly offices and travel discounts. Some benefits depend on role and contract.</p>
+          <footer class="folio"><span>HomeToGo Group · ${c.name}</span><span>10</span></footer>
+        </div>`,
+
+        // 11 Close
+        `<div class="pg tone-dark p-0 p-last">
+          <img class="close-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="" />
+          <div class="cover-shade close-shade"></div>
+          <div class="close-body">
+            <p class="eyebrow on-dark">Before you go</p>
+            <h2>Good luck. We’re looking forward to meeting you.</h2>
+            <section class="card contact-card">
+              <h3>Questions before your interview?</h3>
+              <p class="contact"><b>Reply to your recruiter’s last email.</b></p>
+              <p>Nothing is too small to ask: logistics, the format, or who you’ll meet.</p>
+            </section>
+            <div class="close-foot">
+              <div>${logoWhite}</div>
+              <span class="grad-bar"></span>
+            </div>
+          </div>
+        </div>`
+      ];
+    }
+
+    function renderBook(key) {
+      const c = COMPANIES[key] || COMPANIES.hometogo;
+      document.body.classList.remove("is-picker");
+      document.title = `Candidate pack · ${c.name}`;
+      const pagesHtml = buildPages(c, key);
+      const total = pagesHtml.length;
+
+      app.innerHTML = `
+        <header class="topbar">
+          <span class="brand">${LOGOS[key].white}<span class="muted">${c.name}</span></span>
+          <span class="topbar-right">
+            <button class="switch" type="button" id="switchBtn">All companies</button>
+            <span class="counter" id="counter">1 / ${total}</span>
+          </span>
+        </header>
+        <main class="stage" id="stage">
+          <div class="book" id="book" aria-roledescription="book">
+            <div class="pages" id="pages">
+              ${pagesHtml.map((html, i) => `
+                <section class="page" data-index="${i}" style="--z: ${total - i};">
+                  <div class="face front"><div class="canvas">${html}</div></div>
+                  <div class="face back" aria-hidden="true"></div>
+                </section>
+              `).join("")}
+            </div>
+          </div>
+        </main>
+        <nav class="controls" aria-label="Pages">
+          <button class="nav" type="button" id="prev" aria-label="Previous page">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 6-6 6 6 6"/></svg>
+          </button>
+          <div class="dots" id="dots">
+            ${pagesHtml.map((_, i) => `<button class="dot" type="button" data-go="${i}" aria-label="Page ${i + 1}"></button>`).join("")}
+          </div>
+          <button class="nav" type="button" id="next" aria-label="Next page">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+        </nav>
+      `;
+
+      pageEls = Array.from(document.querySelectorAll(".page"));
+      current = 0;
+
+      function fit() {
+        const stage = document.getElementById("stage");
+        const book = document.getElementById("book");
+        if (!stage || !book) return;
+        const rect = stage.getBoundingClientRect();
+        const availW = Math.max(240, rect.width - 40);
+        const availH = Math.max(320, rect.height - 28);
+        const s = Math.min(availW / 360, availH / 640);
+        book.style.width = `${Math.round(360 * s)}px`;
+        book.style.height = `${Math.round(640 * s)}px`;
+        book.style.setProperty("--s", s);
+      }
+
+      function update(instant = false) {
+        if (instant) document.body.classList.add("no-anim");
+        pageEls.forEach((p, i) => {
+          p.classList.toggle("flipped", i < current);
+          p.classList.toggle("gone", i < current - 1);
+          p.style.zIndex = i < current ? i + 1 : total - i;
+        });
+        document.querySelectorAll(".dot").forEach((d, i) => d.classList.toggle("on", i === current));
+        document.getElementById("counter").textContent = `${current + 1} / ${total}`;
+        document.getElementById("prev").disabled = current === 0;
+        document.getElementById("next").disabled = current === total - 1;
+        if (instant) {
+          requestAnimationFrame(() => document.body.classList.remove("no-anim"));
+        }
+      }
+
+      function goTo(idx) {
+        current = Math.max(0, Math.min(total - 1, idx));
+        update(false);
+      }
+
+      document.getElementById("switchBtn").onclick = () => {
+        history.replaceState(null, "", window.location.pathname);
+        renderPicker();
+      };
+      document.getElementById("prev").onclick = () => goTo(current - 1);
+      document.getElementById("next").onclick = () => goTo(current + 1);
+      document.querySelectorAll(".dot").forEach(d => {
+        d.onclick = () => goTo(Number(d.dataset.go));
       });
 
-      const tilesEl = document.getElementById('p10Tiles');
-      tilesEl.innerHTML = c.tiles.map(t => `<div class="tile"><h3>${t.h}</h3><p>${t.p}</p></div>`).join('');
+      // Swipe support on the book
+      let startX = 0;
+      const bookEl = document.getElementById("book");
+      bookEl.addEventListener("touchstart", e => { startX = e.changedTouches[0].screenX; }, { passive: true });
+      bookEl.addEventListener("touchend", e => {
+        const dx = startX - e.changedTouches[0].screenX;
+        if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1));
+      }, { passive: true });
 
-      companySwitch.value = key;
-      if (window.location.hash !== `#${key}`) {
-        history.replaceState(null, '', `#${key}`);
-      }
+      window.onresize = fit;
+      fit();
+      update(true);
     }
 
-    prevBtn.onclick = () => goTo(current - 1);
-    nextBtn.onclick = () => goTo(current + 1);
-    companySwitch.onchange = (e) => applyCompany(e.target.value);
-
-    // Keyboard & Touch Swipe Support
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') goTo(current + 1);
-      if (e.key === 'ArrowLeft') goTo(current - 1);
+    document.addEventListener("keydown", e => {
+      if (!pageEls.length || document.body.classList.contains("is-picker")) return;
+      if (e.key === "ArrowRight") { current = Math.min(pageEls.length - 1, current + 1); document.getElementById("next")?.click(); }
+      if (e.key === "ArrowLeft") { current = Math.max(0, current - 1); document.getElementById("prev")?.click(); }
     });
 
-    let touchStartX = 0;
-    const book = document.getElementById('book');
-    book.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-    book.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].screenX;
-      if (Math.abs(diff) > 45) goTo(current + (diff > 0 ? 1 : -1));
-    }, { passive: true });
-
-    // Initialize from URL hash (#hometogo, #interhome, #smoobu)
-    const initialHash = window.location.hash.replace('#', '').toLowerCase();
-    applyCompany(COMPANIES[initialHash] ? initialHash : 'hometogo');
-    goTo(0);
+    // Boot: supports #hometogo, #interhome, #smoobu, ?e=..., or opens All Companies Picker
+    const params = new URLSearchParams(window.location.search);
+    const paramKey = (params.get("e") || window.location.hash.replace("#", "")).toLowerCase();
+    if (COMPANIES[paramKey]) {
+      renderBook(paramKey);
+    } else {
+      renderPicker();
+    }
   </script>
 </body>
 </html>
