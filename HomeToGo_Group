@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#140B30" />
+  <title>Candidate Pack · HomeToGo Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" />
+  <style>
+    :root {
+      --bg-stage: #140B30;
+      --purple-deep: #1E1047;
+      --purple-main: #4D21B5;
+      --lavender-bg: #F4F1FC;
+      --light-bg: #FFFFFF;
+      --ink: #171326;
+      --ink-muted: #5A5470;
+      --accent-grad: linear-gradient(90deg, #FF5A5F 0%, #8A4FFF 50%, #00A896 100%);
+      --brand-color: #4D21B5;
+      --radius-page: 24px;
+      --radius-card: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #28165C 0%, var(--bg-stage) 75%);
+      color: var(--ink);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .eyebrow, .stat b {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Topbar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      color: #fff;
+      max-width: 620px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title .muted {
+      font-weight: 500;
+      opacity: 0.72;
+      padding-left: 10px;
+      border-left: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .company-select {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+    .company-select option { color: var(--ink); background: #fff; }
+
+    .counter {
+      font-size: 0.82rem;
+      font-weight: 600;
+      opacity: 0.8;
+      min-width: 44px;
+      text-align: right;
+    }
+
+    /* Stage & Book */
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+    }
+
+    .book {
+      width: 100%;
+      max-width: 460px;
+      height: min(780px, 78dvh);
+      position: relative;
+      border-radius: var(--radius-page);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      background: var(--light-bg);
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      padding: 28px 26px 20px;
+      overflow-y: auto;
+      animation: pageEnter 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .page.active { display: flex; }
+
+    @keyframes pageEnter {
+      from { opacity: 0; transform: translateX(18px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .tone-dark {
+      background: linear-gradient(155deg, #1E1047 0%, var(--brand-color) 100%);
+      color: #fff;
+      justify-content: space-between;
+    }
+
+    .tone-light { background: #FFFFFF; color: var(--ink); }
+    .tone-lav { background: var(--lavender-bg); color: var(--ink); }
+
+    /* Typography & Common Blocks */
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-color);
+      margin-bottom: 6px;
+    }
+    .eyebrow.on-dark { color: rgba(255,255,255,0.75); }
+
+    .pg-head { margin-bottom: 18px; }
+    .pg-head h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-body { margin-top: auto; }
+    .cover-body h1 {
+      font-size: 2.15rem;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .cover-body .lead {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.86);
+      margin-bottom: 28px;
+    }
+
+    .grad-bar {
+      display: block;
+      height: 5px;
+      width: 100%;
+      border-radius: 999px;
+      background: var(--accent-grad);
+      margin-bottom: 12px;
+    }
+
+    .hint {
+      font-size: 0.82rem;
+      font-weight: 600;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Cards & Grids */
+    .card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(23, 19, 38, 0.08);
+    }
+    .tone-light .card { background: #F8F7FC; }
+
+    .card.dark {
+      background: #1B113A;
+      color: #fff;
+      border: none;
+    }
+
+    .card .label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .card h3 { font-size: 1.12rem; margin-bottom: 6px; }
+    .card p { font-size: 0.88rem; line-height: 1.45; opacity: 0.9; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .stat {
+      background: #F4F1FC;
+      padding: 12px 14px;
+      border-radius: 14px;
+    }
+    .stat b { display: block; font-size: 1.35rem; color: var(--brand-color); }
+    .stat span { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.3; display: block; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 10px; }
+    .chip {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #EFEAFB;
+      color: var(--purple-main);
+    }
+    .chip.on-dark { background: rgba(255,255,255,0.16); color: #fff; }
+
+    /* Leadership Principles */
+    .lp-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .lp-list li {
+      background: #fff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .lp-num {
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: var(--brand-color);
+      background: #EFEAFB;
+      padding: 3px 7px;
+      border-radius: 6px;
+      margin-top: 2px;
+    }
+    .lp-list h3 { font-size: 0.92rem; margin-bottom: 1px; }
+    .lp-list p { font-size: 0.8rem; color: var(--ink-muted); }
+
+    /* Steps */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .step { display: flex; gap: 12px; align-items: flex-start; font-size: 0.86rem; }
+    .marker {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #E7E3F3; color: var(--ink);
+      font-weight: 700; font-size: 0.76rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .step.done .marker { background: #00A896; color: #fff; }
+    .step.now .marker { background: var(--brand-color); color: #fff; }
+    .step b { display: block; font-size: 0.9rem; }
+    .step span { color: var(--ink-muted); font-size: 0.8rem; }
+
+    /* Tiles */
+    .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tile {
+      background: #F7F6FB;
+      padding: 12px;
+      border-radius: 14px;
+    }
+    .tile h3 { font-size: 0.9rem; margin-bottom: 3px; }
+    .tile p { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.38; }
+
+    /* Facts */
+    .facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 0.84rem; margin-top: 10px; }
+    .facts dt { opacity: 0.7; font-weight: 600; }
+    .facts dd { font-weight: 600; }
+
+    /* Folio */
+    .folio {
+      margin-top: auto;
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 12px 16px 20px;
+    }
+    .nav-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.1);
+      color: #fff; font-size: 1.1rem; cursor: pointer;
+    }
+    .nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .dots { display: flex; gap: 6px; }
+    .dot {
+      width: 8px; height: 8px; border-radius: 999px;
+      border: none; background: rgba(255,255,255,0.3);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .dot.on { width: 22px; background: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="brand-title">
+      <span>HomeToGo Group</span>
+      <span class="muted" id="brandLabel">HomeToGo</span>
+    </span>
+    <span class="topbar-right">
+      <select class="company-select" id="companySwitch" aria-label="Select company">
+        <option value="hometogo">HomeToGo</option>
+        <option value="interhome">Interhome</option>
+        <option value="smoobu">Smoobu</option>
+      </select>
+      <span class="counter" id="counter">1 / 11</span>
+    </span>
+  </header>
+
+  <main class="stage">
+    <div class="book" id="book">
+      <!-- Page 1: Cover -->
+      <section class="page tone-dark active" data-index="0">
+        <div>
+          <span class="brand-title" id="coverLogo">HomeToGo</span>
+        </div>
+        <div class="cover-body">
+          <p class="eyebrow on-dark" id="coverEyebrow">Candidate pack · HomeToGo</p>
+          <h1>You’re through to the next round.</h1>
+          <p class="lead">Everything you need for your conversation with the hiring manager, in one place.</p>
+          <span class="grad-bar"></span>
+          <span class="hint">Use arrows or swipe to turn the page →</span>
+        </div>
+      </section>
+
+      <!-- Page 2: Recruiter Note -->
+      <section class="page tone-light" data-index="1">
+        <header class="pg-head">
+          <p class="eyebrow">A note from your recruiter</p>
+          <h2>Hello there,</h2>
+        </header>
+        <p style="margin-bottom:14px;line-height:1.6;font-size:0.95rem;">Thank you for your time in our first conversation. We enjoyed it, and we’d like you to meet the hiring manager, who leads the team you’d join.</p>
+        <p style="margin-bottom:22px;line-height:1.6;font-size:0.95rem;">This pack covers who we are, how the next steps work and what helps people do well. None of it is a test. Skim what you know, and send me any question that comes up.</p>
+        <div class="card">
+          <p class="label">Your contact</p>
+          <h3>Talent Acquisition Team</h3>
+          <p id="recruiterOrg">Talent Acquisition, HomeToGo Group</p>
+        </div>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>2</span></footer>
+      </section>
+
+      <!-- Page 3: Three Businesses -->
+      <section class="page tone-light" data-index="2">
+        <header class="pg-head">
+          <p class="eyebrow">Who we are · HomeToGo Group</p>
+          <h2>Three businesses, one group</h2>
+        </header>
+        <div class="stats">
+          <div class="stat"><b>15M+</b><span>travelers a year</span></div>
+          <div class="stat"><b>30+</b><span>countries with local apps & sites</span></div>
+          <div class="stat"><b>1,500+</b><span>colleagues across Europe</span></div>
+          <div class="stat"><b>2021</b><span>listed on Frankfurt Stock Exchange</span></div>
+        </div>
+        <div class="card">
+          <p class="label">Marketplace</p>
+          <h3>HomeToGo</h3>
+          <p>Apps and websites in 30+ countries where travelers search and book their stay.</p>
+        </div>
+        <div class="card">
+          <p class="label">Software</p>
+          <h3>Smoobu and SECRA</h3>
+          <p>Tools that help hosts, agencies and tourism regions run their rentals.</p>
+        </div>
+        <div class="card">
+          <p class="label">Services</p>
+          <h3>Interhome and more</h3>
+          <p>Property management and on-site services. Interhome looks after 70,000+ homes.</p>
+        </div>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>3</span></footer>
+      </section>
+
+      <!-- Page 4: Ecosystem -->
+      <section class="page tone-lav" data-index="3">
+        <header class="pg-head">
+          <p class="eyebrow">Who we are · Our brands</p>
+          <h2>How the Group fits together</h2>
+        </header>
+        <div class="card dark">
+          <p class="label">For travelers</p>
+          <h3>Marketplace</h3>
+          <div class="chips">
+            <span class="chip on-dark">HomeToGo</span>
+            <span class="chip on-dark">GetAway Group</span>
+          </div>
+          <p>Search and book stays in 30+ countries, plus short breaks through Kurz Mal Weg and Kurzurlaub.</p>
+        </div>
+        <div class="card">
+          <p class="label">For hosts and partners</p>
+          <h3>HomeToGo_PRO · Software</h3>
+          <div class="chips">
+            <span class="chip">Smoobu</span>
+            <span class="chip">SECRA</span>
+            <span class="chip">Doppelgänger</span>
+          </div>
+          <p>All-in-one vacation rental software for independent hosts, agencies, and tourism regions.</p>
+        </div>
+        <div class="card">
+          <p class="label">Host services</p>
+          <div class="chips">
+            <span class="chip">my.HomeToGo</span>
+            <span class="chip">CaseVacanza.it</span>
+            <span class="chip">EscapadaRural</span>
+            <span class="chip">amivac</span>
+          </div>
+          <p>Listing plans on HomeToGo, plus leading regional sites in Italy, Spain and France.</p>
+        </div>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>4</span></footer>
+      </section>
+
+      <!-- Page 5: Homes we look after -->
+      <section class="page tone-light" data-index="4">
+        <header class="pg-head">
+          <p class="eyebrow">Who we are · HomeToGo Originals</p>
+          <h2>Homes we look after</h2>
+        </header>
+        <p style="font-size:0.88rem;color:var(--ink-muted);margin-bottom:14px;">Our property management companies care for holiday homes on behalf of their owners, from the first booking to the last clean.</p>
+        <div class="card">
+          <p class="label">Since 1965 · Zurich</p>
+          <h3>Interhome</h3>
+          <p>70,000+ homes · 20+ countries · 120+ local service offices</p>
+        </div>
+        <div class="card">
+          <p class="label">Since 1974 · Baltic coast</p>
+          <h3>Kraushaar</h3>
+          <p>About 1,700 homes · 9 locations in Germany</p>
+        </div>
+        <div class="card dark">
+          <p class="label">HomeToGo Works</p>
+          <h3>timwork</h3>
+          <p>Cleaning, laundry and upkeep for holiday homes on the Baltic coast.</p>
+        </div>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>5</span></footer>
+      </section>
+
+      <!-- Page 6: Dynamic Company & Team -->
+      <section class="page tone-light" data-index="5">
+        <header class="pg-head">
+          <p class="eyebrow" id="p6Eyebrow">Where you’d work · HomeToGo</p>
+          <h2>Your company and your team</h2>
+        </header>
+        <div class="card dark">
+          <p class="label">The company</p>
+          <h3 id="p6Title">HomeToGo, Berlin</h3>
+          <p id="p6Desc">Home to the Group’s marketplace and many central teams, from Product and Engineering to Finance and People.</p>
+          <dl class="facts">
+            <dt>Hub</dt><dd id="p6Office">Berlin</dd>
+            <dt>Language</dt><dd id="p6Lang">English</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <p class="label">Your future team</p>
+          <p>Your recruiter will tell you who you’ll meet and why the role is open.</p>
+        </div>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>6</span></footer>
+      </section>
+
+      <!-- Page 7: 8 Leadership Principles -->
+      <section class="page tone-lav" data-index="6">
+        <header class="pg-head">
+          <p class="eyebrow">How we work · Every Group company</p>
+          <h2>Our eight leadership principles</h2>
+        </header>
+        <ul class="lp-list">
+          <li><span class="lp-num">01</span><div><h3>Make Customers Successful</h3><p>Start with what travelers and hosts need.</p></div></li>
+          <li><span class="lp-num">02</span><div><h3>Bias for Results</h3><p>Focus on outcomes and measure what changed.</p></div></li>
+          <li><span class="lp-num">03</span><div><h3>Always be Responsible</h3><p>Own your work, decisions and their impact.</p></div></li>
+          <li><span class="lp-num">04</span><div><h3>Act Entrepreneurial</h3><p>Spot opportunities and act like an owner.</p></div></li>
+          <li><span class="lp-num">05</span><div><h3>Embrace Change, Reduce Complexity</h3><p>Adapt quickly and keep things simple.</p></div></li>
+          <li><span class="lp-num">06</span><div><h3>Hire and Develop the Best</h3><p>Raise the bar and help people grow.</p></div></li>
+          <li><span class="lp-num">07</span><div><h3>Enable Each Other to Succeed</h3><p>Share what you know and help others win.</p></div></li>
+          <li><span class="lp-num">08</span><div><h3>Lead with AI</h3><p>Use AI every day and stay curious about it.</p></div></li>
+        </ul>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>7</span></footer>
+      </section>
+
+      <!-- Page 8: Interview Journey -->
+      <section class="page tone-light" data-index="7">
+        <header class="pg-head">
+          <p class="eyebrow">What happens next</p>
+          <h2>Your interview journey</h2>
+        </header>
+        <div class="card dark">
+          <p class="label">Up next</p>
+          <h3>Hiring manager interview</h3>
+          <p>Focus: Your experience, how you’d tackle the role and your questions. Need extra time or support? Tell your recruiter—it won’t count against you.</p>
+        </div>
+        <ol class="steps">
+          <li class="step done"><span class="marker">✓</span><div><b>Recruiter conversation</b><span>Done. Thanks for your time.</span></div></li>
+          <li class="step now"><span class="marker">2</span><div><b>Hiring manager interview</b><span>You are here.</span></div></li>
+          <li class="step"><span class="marker">3</span><div><b>Skills round</b><span>A case study or task, briefed in advance.</span></div></li>
+          <li class="step"><span class="marker">4</span><div><b>Team conversations</b><span>Meet future peers and close partners.</span></div></li>
+          <li class="step"><span class="marker">5</span><div><b>Bar Raiser (senior roles)</b><span>A values conversation outside the team.</span></div></li>
+          <li class="step"><span class="marker">6</span><div><b>Decision</b><span>Your recruiter will share the timeline.</span></div></li>
+        </ol>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>8</span></footer>
+      </section>
+
+      <!-- Page 9: Four things that help -->
+      <section class="page tone-lav" data-index="8">
+        <header class="pg-head">
+          <p class="eyebrow">How to prepare</p>
+          <h2>Four things that help</h2>
+        </header>
+        <div class="card">
+          <p class="label">01</p>
+          <h3>Revisit the role</h3>
+          <p>Re-read the job ad. Pick the two or three outcomes that matter most and how you’d tackle them.</p>
+        </div>
+        <div class="card">
+          <p class="label">02</p>
+          <h3>Bring real examples</h3>
+          <p>A few stories from your work: the situation, what you did, what changed. Specific beats polished.</p>
+        </div>
+        <div class="card">
+          <p class="label">03</p>
+          <h3>Try what we build</h3>
+          <p id="p9Try">Plan a trip on HomeToGo or browse the app. Note one thing you liked and one you’d change.</p>
+        </div>
+        <div class="card">
+          <p class="label">04</p>
+          <h3>Bring your questions</h3>
+          <p>The interview runs both ways. Ask about the team, the work and how success is measured.</p>
+        </div>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>9</span></footer>
+      </section>
+
+      <!-- Page 10: Dynamic Life & Benefits -->
+      <section class="page tone-light" data-index="9">
+        <header class="pg-head">
+          <p class="eyebrow" id="p10Eyebrow">What we offer · HomeToGo</p>
+          <h2 id="p10Title">Life at HomeToGo</h2>
+        </header>
+        <div class="tiles" id="p10Tiles"></div>
+        <p style="font-size:0.76rem;color:var(--ink-muted);margin-top:12px;">Plus travel discounts across Group properties. Specific benefits depend on location, role, and contract.</p>
+        <footer class="folio"><span class="folio-brand">HomeToGo Group · HomeToGo</span><span>10</span></footer>
+      </section>
+
+      <!-- Page 11: Closing -->
+      <section class="page tone-dark" data-index="10">
+        <div>
+          <span class="brand-title" id="closeLogo">HomeToGo</span>
+        </div>
+        <div class="cover-body">
+          <p class="eyebrow on-dark">Before you go</p>
+          <h2>Good luck. We’re looking forward to meeting you.</h2>
+          <div class="card" style="color:var(--ink);margin:20px 0;">
+            <h3>Questions before your interview?</h3>
+            <p style="font-weight:700;margin-bottom:4px;">Reply to your recruiter’s last email.</p>
+            <p>Nothing is too small to ask: logistics, the format, or who you’ll meet.</p>
+          </div>
+          <span class="grad-bar"></span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="controls" aria-label="Pages">
+    <button class="nav-btn" id="prev" aria-label="Previous page">‹</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn" id="next" aria-label="Next page">›</button>
+  </nav>
+
+  <script>
+    const COMPANIES = {
+      hometogo: {
+        name: "HomeToGo",
+        color: "#4D21B5",
+        p6Title: "HomeToGo, Berlin",
+        p6Desc: "Home to the Group’s marketplace and many central teams, from Product and Engineering to Finance and People.",
+        p6Office: "Berlin & Hybrid",
+        p6Lang: "English",
+        p9Try: "Plan a trip on HomeToGo or browse the app. Note one thing you liked and one you’d change.",
+        tiles: [
+          { h: "Flexible hybrid", p: "Up to 50% remote, with up to 63 days abroad in the EU and UK." },
+          { h: "Time off", p: "27 vacation days to start, rising with tenure to 32." },
+          { h: "Pay and equity", p: "Market-aligned salary, plus stock options for eligible roles." },
+          { h: "AI tools", p: "Google Workspace, Slack AI, Claude, Copilot and our own agents." },
+          { h: "Learning", p: "German classes, masterclasses and cross-team mentoring." },
+          { h: "Wellbeing", p: "Mental health support and subsidized sports memberships." },
+          { h: "Getting around", p: "Deutschland-Ticket subsidy and bike leasing." },
+          { h: "Relocation", p: "Visa sponsorship and relocation support for international hires." }
+        ]
+      },
+      interhome: {
+        name: "Interhome",
+        color: "#005596",
+        p6Title: "Interhome, Zurich & Local Hubs",
+        p6Desc: "Europe’s leading full-service holiday home specialist with 60+ years of hospitality heritage across 120+ local destination offices.",
+        p6Office: "Glattbrugg (Zurich) & Destinations",
+        p6Lang: "English, German & Local",
+        p9Try: "Browse Interhome.com and explore how owners and guests experience full-service holiday homes.",
+        tiles: [
+          { h: "Hybrid & local", p: "Flexible hybrid setup in HQ paired with hands-on destination teams." },
+          { h: "Holiday perks", p: "Generous employee discounts on 70,000+ Interhome properties." },
+          { h: "Swiss & EU standards", p: "Competitive compensation, pension plans, and social benefits." },
+          { h: "AI & digital tools", p: "Modern cloud workspace and Group-wide AI productivity tools." },
+          { h: "Cross-Group mobility", p: "Career pathways across Interhome, HomeToGo, and Smoobu." },
+          { h: "Learning & growth", p: "Language courses, hospitality training, and leadership programs." },
+          { h: "Commuter support", p: "Public transport subsidies and modern office facilities." },
+          { h: "International culture", p: "Collaborate across 20+ European countries every day." }
+        ]
+      },
+      smoobu: {
+        name: "Smoobu",
+        color: "#00877A",
+        p6Title: "Smoobu, Berlin",
+        p6Desc: "The all-in-one vacation rental SaaS empowering independent hosts and property managers to automate bookings and sync channels.",
+        p6Office: "Berlin & Hybrid",
+        p6Lang: "English (plus multi-market)",
+        p9Try: "Explore Smoobu.com or test a free trial to see how hosts manage calendars and direct bookings.",
+        tiles: [
+          { h: "SaaS agility", p: "Fast-moving product & customer teams with high individual ownership." },
+          { h: "Flexible hybrid", p: "Hybrid work from our Berlin hub plus workation options abroad." },
+          { h: "Time off", p: "Generous annual vacation allowance growing with your tenure." },
+          { h: "AI-first workflow", p: "Full access to modern AI coding, support, and productivity tools." },
+          { h: "Learning budget", p: "Dedicated resources for SaaS conferences, courses, and languages." },
+          { h: "Wellbeing", p: "Subsidized sports memberships and mental health resources." },
+          { h: "Getting around", p: "Deutschland-Ticket subsidy and bike leasing options." },
+          { h: "Travel discounts", p: "Exclusive employee stay discounts across HomeToGo Group." }
+        ]
+      }
+    };
+
+    const pages = Array.from(document.querySelectorAll('.page'));
+    const dotsWrap = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const companySwitch = document.getElementById('companySwitch');
+    let current = 0;
+
+    // Build dots
+    pages.forEach((_, idx) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (idx === 0 ? ' on' : '');
+      d.setAttribute('aria-label', `Go to page ${idx + 1}`);
+      d.onclick = () => goTo(idx);
+      dotsWrap.appendChild(d);
+    });
+
+    function goTo(idx) {
+      current = Math.max(0, Math.min(pages.length - 1, idx));
+      pages.forEach((p, i) => p.classList.toggle('active', i === current));
+      Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('on', i === current));
+      counter.textContent = `${current + 1} / ${pages.length}`;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === pages.length - 1;
+    }
+
+    function applyCompany(key) {
+      const c = COMPANIES[key] || COMPANIES.hometogo;
+      document.documentElement.style.setProperty('--brand-color', c.color);
+      document.title = `Candidate Pack · ${c.name}`;
+      document.getElementById('brandLabel').textContent = c.name;
+      document.getElementById('coverLogo').textContent = c.name;
+      document.getElementById('closeLogo').textContent = c.name;
+      document.getElementById('coverEyebrow').textContent = `Candidate pack · ${c.name}`;
+      document.getElementById('p6Eyebrow').textContent = `Where you’d work · ${c.name}`;
+      document.getElementById('p6Title').textContent = c.p6Title;
+      document.getElementById('p6Desc').textContent = c.p6Desc;
+      document.getElementById('p6Office').textContent = c.p6Office;
+      document.getElementById('p6Lang').textContent = c.p6Lang;
+      document.getElementById('p9Try').textContent = c.p9Try;
+      document.getElementById('p10Eyebrow').textContent = `What we offer · ${c.name}`;
+      document.getElementById('p10Title').textContent = `Life at ${c.name}`;
+
+      document.querySelectorAll('.folio-brand').forEach(el => {
+        el.textContent = `HomeToGo Group · ${c.name}`;
+      });
+
+      const tilesEl = document.getElementById('p10Tiles');
+      tilesEl.innerHTML = c.tiles.map(t => `<div class="tile"><h3>${t.h}</h3><p>${t.p}</p></div>`).join('');
+
+      companySwitch.value = key;
+      if (window.location.hash !== `#${key}`) {
+        history.replaceState(null, '', `#${key}`);
+      }
+    }
+
+    prevBtn.onclick = () => goTo(current - 1);
+    nextBtn.onclick = () => goTo(current + 1);
+    companySwitch.onchange = (e) => applyCompany(e.target.value);
+
+    // Keyboard & Touch Swipe Support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goTo(current + 1);
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+    });
+
+    let touchStartX = 0;
+    const book = document.getElementById('book');
+    book.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    book.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 45) goTo(current + (diff > 0 ? 1 : -1));
+    }, { passive: true });
+
+    // Initialize from URL hash (#hometogo, #interhome, #smoobu)
+    const initialHash = window.location.hash.replace('#', '').toLowerCase();
+    applyCompany(COMPANIES[initialHash] ? initialHash : 'hometogo');
+    goTo(0);
+  </script>
+</body>
+</html>
